@@ -1,0 +1,200 @@
+C51 COMPILER V6.02  I2C                                                                    10/25/2019 13:40:11 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE I2C
+OBJECT MODULE PLACED IN .\I2C.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\source\I2C.c DEBUG OBJECTEXTEND PRINT(.\I2C.lst) OBJECT(.\I2C.obj) 
+
+stmt level    source
+
+   1          #include "I2C.h"
+   2          #include "PORT.h"
+   3          #include "Main.h"
+   4          
+   5          #define CLOCK_CONTINUE (0)
+   6          #define CLOCK_STOP (1)
+   7          #define I2C_FREQ (25000)
+   8          #define I2C_RELOAD (65536 - ((OSC_FREQ)/(I2C_FREQ*OSC_PER_INST*2UL)))
+   9          #define I2C_RELOAD_H (I2C_RELOAD/256)
+  10          #define I2C_RELOAD_L (I2C_RELOAD%256)
+  11          
+  12          
+  13          void I2C_clock_start(void)
+  14          {
+  15   1        //16b timer mode
+  16   1        TMOD &= 0x0F;
+  17   1        TMOD |= 0x10;
+  18   1        ET1 = 0;
+  19   1        TH1 = I2C_RELOAD_H;
+  20   1        TL1 = I2C_RELOAD_L;
+  21   1        TF1 = 0;
+  22   1        TR1 = 0;
+  23   1      }
+  24          
+  25          void I2C_clock_delay(uint8_t control)
+  26          {
+  27   1        if(TR1 == 1)
+  28   1        {
+  29   2          while(TF1 == 0);
+  30   2        }
+  31   1      
+  32   1        TR1 = 0;
+  33   1        if(control == CLOCK_CONTINUE)
+  34   1        {
+  35   2          TH1 = I2C_RELOAD_H;
+  36   2          TL1 = I2C_RELOAD_L;
+  37   2          TF1 = 0;
+  38   2          TR1 = 0;
+  39   2        }
+  40   1      }
+  41          
+  42          uint8_t I2C_comm(uint8_t comm_type, uint8_t device_addr, uint32_t int_addr, uint8_t int_addr_sz, uint16_t 
+             -num_bytes, uint8_t *data_array)
+  43          {
+  44   1        uint8_t return_val, send_val, rcv_val, num_bits, sent_bit, send_bit;
+  45   1        uint16_t index;
+  46   1        return_val = I2C_COMM_OK;
+  47   1        int_addr_sz = int_addr_sz*8; // convert bytes to bits
+  48   1        SDA=1;
+  49   1        SCL=1;
+  50   1        num_bytes++; // include device address
+  51   1        if((SCL==1) && (SDA==1))
+  52   1        {
+  53   2          I2C_clock_start();
+  54   2          send_val = device_addr<<1;
+C51 COMPILER V6.02  I2C                                                                    10/25/2019 13:40:11 PAGE 2   
+
+  55   2          if(comm_type == I2C_COMM_READ) send_val |= 0x01; // set LSB (R/W bit)
+  56   2          // send start condition
+  57   2          SDA=0;
+  58   2          index=0;
+  59   2          // byte loop
+  60   2          do
+  61   2          {
+  62   3            // bit loop
+  63   3            num_bits = 8;
+  64   3            do
+  65   3            {
+  66   4              I2C_clock_delay(CLOCK_CONTINUE);
+  67   4              SCL=0;
+  68   4              num_bits--;
+  69   4              if(comm_type == I2C_COMM_READ)
+  70   4              {
+  71   5                SDA=1; // set to '1' for input
+  72   5                rcv_val = rcv_val<<1;
+  73   5              }
+  74   4              else
+  75   4              {
+  76   5                send_bit=((send_val>>num_bits)&0x01); // shift to get next bit and mask off
+  77   5                SDA=(bit)send_bit;
+  78   5              }
+  79   4              I2C_clock_delay(CLOCK_CONTINUE);
+  80   4              SCL=1;
+  81   4              while(SCL!=1); // wait for SCL to be '1'
+  82   4              sent_bit=SDA; // read
+  83   4              if(comm_type == I2C_COMM_READ)
+  84   4              {
+  85   5                rcv_val |= sent_bit;
+  86   5              }
+  87   4              else
+  88   4              {
+  89   5                if(sent_bit != send_bit) return_val = I2C_ERROR_BUS_BUSY;
+  90   5              }
+  91   4            }while((num_bits!=0)&&(return_val==I2C_COMM_OK));
+  92   3      
+  93   3            if(return_val == I2C_COMM_OK)
+  94   3            {
+  95   4              if(comm_type == I2C_COMM_READ)
+  96   4              {
+  97   5                // reading
+  98   5                data_array[index] = rcv_val;
+  99   5                index++;
+ 100   5                num_bytes--;
+ 101   5                if(num_bytes==0)
+ 102   5                {
+ 103   6                  send_bit = 1; // NACK for last byte
+ 104   6                }
+ 105   5                else
+ 106   5                {
+ 107   6                  send_bit = 0; // ACK for more bytes
+ 108   6                }
+ 109   5                I2C_clock_delay(CLOCK_CONTINUE);
+ 110   5                SCL=0;
+ 111   5                SDA=send_bit;
+ 112   5                I2C_clock_delay(CLOCK_CONTINUE);
+ 113   5                SCL=1;
+ 114   5                while(SCL!=1);
+ 115   5              }
+ 116   4              else
+C51 COMPILER V6.02  I2C                                                                    10/25/2019 13:40:11 PAGE 3   
+
+ 117   4              {
+ 118   5                // writing
+ 119   5                I2C_clock_delay(CLOCK_CONTINUE);
+ 120   5                SCL=0;
+ 121   5                SDA=1; // set SDA high so slave can send ACK
+ 122   5                if(int_addr_sz!=0)
+ 123   5                {
+ 124   6                  int_addr_sz = int_addr_sz - 8;
+ 125   6                  send_val = (uint8_t)(int_addr>>int_addr_sz);
+ 126   6                }
+ 127   5                else
+ 128   5                {
+ 129   6                  num_bytes--;
+ 130   6                  send_val = data_array[index];
+ 131   6                  index++;
+ 132   6                }
+ 133   5      
+ 134   5                I2C_clock_delay(CLOCK_CONTINUE);
+ 135   5                SCL=1;
+ 136   5                while(SCL!=1);
+ 137   5                sent_bit=SDA;
+ 138   5                if(send_bit!=0) return_val=I2C_ERROR_NACK;
+ 139   5              }
+ 140   4            }
+ 141   3          }while((num_bytes>0)&&(return_val==I2C_COMM_OK));
+ 142   2      
+ 143   2          // send stop condition
+ 144   2          if(return_val!=I2C_ERROR_BUS_BUSY)
+ 145   2          {
+ 146   3            I2C_clock_delay(CLOCK_CONTINUE);
+ 147   3            SCL=0;
+ 148   3            SDA=0;
+ 149   3            I2C_clock_delay(CLOCK_CONTINUE);
+ 150   3            SCL=1;
+ 151   3            while(SCL!=1);
+ 152   3            I2C_clock_delay(CLOCK_STOP);
+ 153   3            SDA=1;
+ 154   3          }
+ 155   2        }
+ 156   1        return I2C_COMM_OK;
+ 157   1      }
+ 158          
+ 159          
+ 160          uint8_t I2C_read(uint8_t device_addr, uint32_t int_addr, uint8_t int_addr_sz, uint16_t num_bytes, uint8_t 
+             -*data_array)
+ 161          {
+ 162   1        uint8_t return_val = I2C_COMM_OK;
+ 163   1        if(int_addr_sz != 0)
+ 164   1        {
+ 165   2          return_val = I2C_comm(I2C_COMM_WRITE, device_addr, int_addr, int_addr_sz, 0, data_array);
+ 166   2        }
+ 167   1        if(return_val != I2C_COMM_OK) return return_val;
+ 168   1        return I2C_comm(I2C_COMM_READ, device_addr, 0, 0, num_bytes, data_array);
+ 169   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    508    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      31
+C51 COMPILER V6.02  I2C                                                                    10/25/2019 13:40:11 PAGE 4   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
