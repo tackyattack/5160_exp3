@@ -7,9 +7,8 @@
 #include "LED_Outputs.h"
 #include "STA013.h"
 
-
 uint8_t code exp3_string[]="STA013 Init";
-
+uint8_t code exp3_string_success[]="STA013 Success";
 
 main()
 {
@@ -27,18 +26,26 @@ main()
    }
    Timer0_DELAY_1ms(300);
    uart_init(9600);
-   LEDS_OFF(Red_LED);
 
 
    LCD_Init();
    LCD_Print(line1,0,exp3_string);
-   STA013_init();
+   if(STA013_init() == STA013_INIT_OK)
+   {
+     printf("STA013 init success\n");
+     LCD_Print(line1,0,exp3_string_success);
+     LEDS_ON(Green_LED);
+   }
+   else
+   {
+     printf("STA013 init failed\n");
+     LEDS_ON(Amber_LED);
+   }
+   LEDS_OFF(Red_LED);
 
    while(1)
    {
-
 	      input_value=UART_Receive();
         UART_Transmit(input_value);
-
    }
 }

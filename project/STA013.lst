@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 13:40:12 PAGE 1   
+C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE STA013
@@ -16,7 +16,7 @@ stmt level    source
    6          #include <stdio.h>
    7          
    8          #define STA013_DEVICE_ADDR (0x43)
-   9          #define CFG_TABLE_SZ (18)
+   9          #define CFG_TABLE_SZ (17)
   10          
   11          #define TEST_FAIL (0)
   12          #define TEST_PASS (1)
@@ -24,174 +24,188 @@ stmt level    source
   14          // row 1: register addresses
   15          // row 2: register values
   16          uint8_t code cfg_table[2][CFG_TABLE_SZ] =
-  17          {0x54, 0x55, 6, 11,  82,  81, 101, 100, 80, 97, 0x05, 0x0d, 0x18, 0x0c, 0x46, 0x48, 0x7d, 0x72,
-  18          0x07, 0x10,  9,  2, 184,   0,   0,   0,  6,  5, 0xa1, 0x00, 0x04, 0x05, 0x07, 0x07, 0x07, 0x01};
-  19          
-  20          uint8_t STA013_test_read(uint8_t *ID_reg)
-  21          {
-  22   1        uint8_t err;
-  23   1        uint8_t timeout = 50;
-  24   1        uint8_t rcv[1];
-  25   1        do
-  26   1        {
-  27   2          // check internal address 1
-  28   2          write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, SET_BIT);
-  29   2          err = I2C_read(STA013_DEVICE_ADDR, 0x01, 1, 1, rcv);
-  30   2          write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, CLEAR_BIT);
-  31   2          timeout--;
-  32   2        } while((err != I2C_COMM_OK) && (timeout!=0));
-  33   1        if(timeout==0)
-  34   1        {
-  35   2          printf("Error: timeout while testing read\n");
-  36   2          return TEST_FAIL;
-  37   2        }
-  38   1        *ID_reg = rcv[0];
-  39   1        if(rcv[0] != 0xAC)
-  40   1        {
-  41   2          printf("Error: incorrect ID register while testing read\n");
-  42   2          return TEST_FAIL;
-  43   2        }
-  44   1      
-  45   1        printf("Read test passed: ID register: <%2.2bX>\n", *ID_reg);
-  46   1        return TEST_PASS;
-  47   1      }
-  48          
-  49          uint8_t STA013_test_write()
-  50          {
-  51   1        uint8_t err;
-  52   1        uint8_t timeout = 50;
-  53   1        uint8_t send[1];
-  54   1        uint8_t ID_reg;
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 13:40:12 PAGE 2   
+  17          {0x54, 0x55, 6, 11,  97,  80, 101,  82, 100, 81,   5, 0x0d, 0x18, 0x0c, 0x46, 0x48, 0x72,
+  18           0x07, 0x10, 9,  2,   5,   6,   0, 184,   0,  0, 161, 0x00, 0x04, 0x05, 0x07, 0x07, 0x01};
+  19          // 0x54 = 0x07: 16-bit output with 512 x oversampling
+  20          // 0x55 = 0x10: MSB first, right padded, I2S format, 16-bit output
+  21          // Next 9 registers: 14.7456MHz with 512 oversampling ratio
+  22          // 0x0d = 0x00: the data are sent with the falling edge of SCKR and sampled on the rising edge
+  23          // 0x18 = 0x04: Enable the Data Request Signal for multimedia mode
+  24          // 0x0C = 0x05: Set the Data Request Polarity to active low
+  25          // 0x46 = 0x07: left attenuation set to 7dB
+  26          // 0x48 = 0x07: right attenuation set to 7dB
+  27          // 0x72 = 0x01: start decoding
+  28          
+  29          uint8_t STA013_test_read_ID(uint8_t *ID_reg)
+  30          {
+  31   1        uint8_t err;
+  32   1        uint8_t timeout = 50;
+  33   1        uint8_t rcv[1];
+  34   1        do
+  35   1        {
+  36   2          // check internal address 1
+  37   2          err = I2C_read(STA013_DEVICE_ADDR, 0x01, 1, 1, rcv);
+  38   2          timeout--;
+  39   2        } while((err != I2C_COMM_OK) && (timeout!=0));
+  40   1      
+  41   1        if(timeout==0)
+  42   1        {
+  43   2          printf("Error: timeout while testing read\n");
+  44   2          return TEST_FAIL;
+  45   2        }
+  46   1        if(err != I2C_COMM_OK)
+  47   1        {
+  48   2          printf("Error: I2C while testing read: %d\n", err);
+  49   2          return TEST_FAIL;
+  50   2        }
+  51   1        *ID_reg = rcv[0];
+  52   1        if(rcv[0] != 0xAC)
+  53   1        {
+  54   2          printf("Error: incorrect ID register while testing read");
+C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 2   
 
-  55   1        send[0] = 0xBE;
-  56   1        do
-  57   1        {
-  58   2          // check internal address 1
-  59   2          write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, SET_BIT);
-  60   2          err = I2C_write(STA013_DEVICE_ADDR, 0x01, 1, 1, send);
-  61   2          write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, CLEAR_BIT);
-  62   2          timeout--;
-  63   2        } while((err != I2C_COMM_OK) && (timeout!=0));
-  64   1        if(timeout==0)
-  65   1        {
-  66   2          printf("Error: timeout while testing write\n");
-  67   2          return TEST_FAIL;
-  68   2        }
-  69   1      
-  70   1        if(STA013_test_read(&ID_reg) != TEST_PASS) return TEST_FAIL;
-  71   1      
-  72   1        if(ID_reg != 0xBE)
-  73   1        {
-  74   2          printf("Error: incorrect ID register while testing write\n");
-  75   2          return TEST_FAIL;
-  76   2        }
-  77   1      
-  78   1        printf("Write test passed: ID register: <%2.2bX>\n", ID_reg);
-  79   1        return TEST_PASS;
-  80   1      }
-  81          
-  82          uint8_t STA013_test()
-  83          {
-  84   1        uint8_t ID_reg;
-  85   1        if(STA013_test_read(&ID_reg) != TEST_PASS) return TEST_FAIL;
-  86   1        if(STA013_test_write() != TEST_PASS) return TEST_FAIL;
-  87   1      }
-  88          
-  89          uint8_t STA013_send_cfg_file(uint8_t *cfg_p)
-  90          {
-  91   1        uint8_t timeout, status;
-  92   1        uint16_t index;
-  93   1        uint32_t internal_addr;
-  94   1        uint8_t send_array[1];
-  95   1      
-  96   1        internal_addr = 0x00;
-  97   1        index=0;
-  98   1        // write config file
-  99   1        while((internal_addr != 0xFF)&&(timeout!=0))
- 100   1        {
- 101   2          timeout=50;
- 102   2          do
- 103   2          {
- 104   3            write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, SET_BIT);
- 105   3            status = I2C_write(STA013_DEVICE_ADDR, internal_addr, 1, 1, send_array);
- 106   3            write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, CLEAR_BIT);
- 107   3          }while((status!=I2C_COMM_OK)&&(timeout!=0));
- 108   2          if(timeout==0)
- 109   2          {
- 110   3            return STA013_CFG_ERROR;
- 111   3            printf("STA013 config timeout error\n");
- 112   3          }
- 113   2          internal_addr = cfg_p[index];
- 114   2          index++;
- 115   2          send_array[0] = cfg_p[index];
- 116   2          index++;
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 13:40:12 PAGE 3   
+  55   2          printf(" ID register: <0x%2.2bX>\n", ID_reg);
+  56   2          return TEST_FAIL;
+  57   2        }
+  58   1        return TEST_PASS;
+  59   1      }
+  60          
+  61          uint8_t STA013_send_cfg_file(uint8_t *cfg_p)
+  62          {
+  63   1        uint8_t timeout, status;
+  64   1        uint16_t index;
+  65   1        uint32_t internal_addr;
+  66   1        uint8_t send_array[1];
+  67   1        index=0;
+  68   1        internal_addr = cfg_p[index];
+  69   1        index++;
+  70   1        send_array[0] = cfg_p[index];
+  71   1        index++;
+  72   1        // write config file
+  73   1        while(internal_addr != 0xFF)
+  74   1        {
+  75   2          timeout=50;
+  76   2          // check to make sure address isn't end of array
+  77   2          do
+  78   2          {
+  79   3            status = I2C_write(STA013_DEVICE_ADDR, internal_addr, 1, 1, send_array);
+  80   3            timeout--;
+  81   3          }while((status!=I2C_COMM_OK)&&(timeout!=0));
+  82   2          if(timeout==0)
+  83   2          {
+  84   3            return STA013_CFG_ERROR;
+  85   3            printf("STA013 config timeout error\n");
+  86   3          }
+  87   2      
+  88   2          internal_addr = cfg_p[index];
+  89   2          index++;
+  90   2          send_array[0] = cfg_p[index];
+  91   2          index++;
+  92   2        }
+  93   1        return STA013_CFG_SENT;
+  94   1      }
+  95          
+  96          uint8_t STA013_send_cfg_table()
+  97          {
+  98   1        uint8_t recv[1], send[1], timeout, status;
+  99   1        uint16_t index;
+ 100   1        uint32_t internal_addr;
+ 101   1        for(index = 0; index < CFG_TABLE_SZ; index++)
+ 102   1        {
+ 103   2          timeout=50;
+ 104   2          internal_addr = cfg_table[0][index];
+ 105   2          send[0] = cfg_table[1][index];
+ 106   2          // set register
+ 107   2          do
+ 108   2          {
+ 109   3            status = I2C_write(STA013_DEVICE_ADDR, internal_addr, 1, 1, send);
+ 110   3            timeout--;
+ 111   3          }while((status!=I2C_COMM_OK)&&(timeout!=0));
+ 112   2          if(timeout == 0)
+ 113   2          {
+ 114   3            printf("STA013 init error while setting config table: timeout\n");
+ 115   3            return STA013_INIT_ERROR;
+ 116   3          }
+C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 3   
 
- 117   2        }
- 118   1      
- 119   1        return STA013_CFG_SENT;
- 120   1      
- 121   1      }
- 122          
- 123          uint8_t STA013_init()
- 124          {
- 125   1        uint8_t timeout, status;
- 126   1        uint16_t index;
- 127   1        uint32_t internal_addr;
- 128   1        uint8_t send_array[1];
- 129   1        extern uint8_t code CONFIG;
- 130   1        extern uint8_t code CONFIG2;
- 131   1        index=0;
- 132   1        timeout=50;
- 133   1      
- 134   1        write_port_bit(STA013_RESET_PORT, STA013_RESET_PIN, CLEAR_BIT);
- 135   1        write_port_bit(STA013_RESET_PORT, STA013_RESET_PIN, SET_BIT);
- 136   1      
- 137   1        // test read and write I2C functions with the STA013
- 138   1        if(STA013_test() != TEST_PASS)
- 139   1        {
- 140   2          printf("STA013 init error\n");
- 141   2          return STA013_INIT_ERROR;
- 142   2        }
- 143   1      
- 144   1        if(STA013_send_cfg_file(&CONFIG)!=STA013_CFG_SENT) return STA013_INIT_ERROR;
- 145   1        if(STA013_send_cfg_file(&CONFIG2)!=STA013_CFG_SENT) return STA013_INIT_ERROR;
- 146   1      
- 147   1        for(index = 0; index < CFG_TABLE_SZ; index++)
- 148   1        {
- 149   2          timeout=50;
- 150   2          internal_addr = cfg_table[0][index];
- 151   2          send_array[0] = cfg_table[1][index];
- 152   2          do
- 153   2          {
- 154   3            write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, SET_BIT);
- 155   3            status = I2C_write(STA013_DEVICE_ADDR, internal_addr, 1, 1, send_array);
- 156   3            write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, CLEAR_BIT);
- 157   3            timeout--;
- 158   3          }while((status!=I2C_COMM_OK)&&(timeout!=0));
- 159   2          if(timeout == 0)
- 160   2          {
- 161   3            printf("STA013 init error while setting config table\n");
- 162   3            return STA013_INIT_ERROR;
- 163   3          }
- 164   2        }
- 165   1      
- 166   1        return STA013_INIT_OK;
- 167   1      }
+ 117   2          if(status != I2C_COMM_OK)
+ 118   2          {
+ 119   3            printf("STA013 init error while setting config table: communication\n");
+ 120   3            return STA013_INIT_ERROR;
+ 121   3          }
+ 122   2      
+ 123   2          // read back to verify
+ 124   2          timeout = 0;
+ 125   2          recv[0] = 0x00;
+ 126   2          do
+ 127   2          {
+ 128   3            status = I2C_read(STA013_DEVICE_ADDR, internal_addr, 1, 1, recv);
+ 129   3            timeout--;
+ 130   3          }while((status!=I2C_COMM_OK)&&(timeout!=0));
+ 131   2          if(timeout == 0)
+ 132   2          {
+ 133   3            printf("STA013 init error while verifying config table: timeout\n");
+ 134   3            return STA013_INIT_ERROR;
+ 135   3          }
+ 136   2          if(status != I2C_COMM_OK)
+ 137   2          {
+ 138   3            printf("STA013 init error while setting config table: communication\n");
+ 139   3            return STA013_INIT_ERROR;
+ 140   3          }
+ 141   2          if(recv[0] != send[0])
+ 142   2          {
+ 143   3            printf("STA013 init error while setting config table: register values do not match\n");
+ 144   3            printf("Should be: <0x%2.2bX>  instead got: <0x%2.2bX>\n", send[0], recv[0]);
+ 145   3            return STA013_INIT_ERROR;
+ 146   3          }
+ 147   2          else
+ 148   2          {
+ 149   3            printf("Set register: <0x%2.2bX> to <0x%2.2bX>  verified as: <0x%2.2bX>\n", (uint8_t)internal_addr, 
+             -send[0],recv[0]);
+ 150   3          }
+ 151   2        }
+ 152   1        return STA013_CFG_SENT;
+ 153   1      }
+ 154          
+ 155          uint8_t STA013_init()
+ 156          {
+ 157   1        uint8_t ID_reg;
+ 158   1        extern uint8_t code CONFIG;
+ 159   1        extern uint8_t code CONFIG2;
+ 160   1      
+ 161   1        write_port_bit(STA013_RESET_PORT, STA013_RESET_PIN, CLEAR_BIT);
+ 162   1        write_port_bit(STA013_RESET_PORT, STA013_RESET_PIN, SET_BIT);
+ 163   1      
+ 164   1        // test read and write I2C functions with the STA013
+ 165   1        write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, CLEAR_BIT);
+ 166   1        if(STA013_test_read_ID(&ID_reg) != TEST_PASS)
+ 167   1        {
+ 168   2          printf("STA013 init error\n");
+ 169   2          return STA013_INIT_ERROR;
+ 170   2        }
+ 171   1        write_port_bit(STA013_TRIGGER_PORT, STA013_TRIGGER_PIN, SET_BIT);
+ 172   1        printf("Read test passed: ID register: <0x%2.2bX>\n", ID_reg);
+ 173   1      
+ 174   1        if(STA013_send_cfg_file(&CONFIG)!=STA013_CFG_SENT) return STA013_INIT_ERROR;
+ 175   1        if(STA013_send_cfg_file(&CONFIG2)!=STA013_CFG_SENT) return STA013_INIT_ERROR;
+ 176   1      
+ 177   1        if(STA013_send_cfg_table() != STA013_CFG_SENT) return STA013_INIT_ERROR;
+C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 4   
+
+ 178   1      
+ 179   1        return STA013_INIT_OK;
+ 180   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    706    ----
-   CONSTANT SIZE    =    383    ----
+   CODE SIZE        =    729    ----
+   CONSTANT SIZE    =    631    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      32
+   DATA SIZE        =   ----      28
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
-
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 13:40:12 PAGE 4   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

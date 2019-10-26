@@ -1,10 +1,9 @@
-BL51 BANKED LINKER/LOCATER V4.02                                                        10/25/2019  13:40:13  PAGE 1
+BL51 BANKED LINKER/LOCATER V4.02                                                        10/25/2019  23:11:38  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V4.02, INVOKED BY:
 C:\KEIL\C51\BIN\BL51.EXE .\exp_3_fall2019.obj, .\I2C.obj, .\LCD_hardware_functions.obj, .\LCD_routines.obj, .\LED_Output
->> s.obj, .\outputs.obj, .\print_bytes.obj, .\STA013.obj, .\Timer0_hardware_delay_1ms.obj, .\UART.obj, .\config.obj TO e
->> xp3
+>> s.obj, .\outputs.obj, .\STA013.obj, .\Timer0_hardware_delay_1ms.obj, .\UART.obj, .\config.obj TO exp3
 
 
 MEMORY MODEL: SMALL
@@ -17,13 +16,11 @@ INPUT MODULES INCLUDED:
   .\LCD_routines.obj (LCD_ROUTINES)
   .\LED_Outputs.obj (LED_OUTPUTS)
   .\outputs.obj (OUTPUTS)
-  .\print_bytes.obj (PRINT_BYTES)
   .\STA013.obj (STA013)
   .\Timer0_hardware_delay_1ms.obj (TIMER0_HARDWARE_DELAY_1MS)
   .\UART.obj (UART)
   .\config.obj (CONFIG)
   C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
-  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CSTPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CSTOPTR)
@@ -32,6 +29,7 @@ INPUT MODULES INCLUDED:
   C:\KEIL\C51\LIB\C51S.LIB (?C?ULCMP)
   C:\KEIL\C51\LIB\C51S.LIB (?C?ULSHR)
   C:\KEIL\C51\LIB\C51S.LIB (PRINTF)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
   C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIIDATA)
   C:\KEIL\C51\LIB\C51S.LIB (?C?CCASE)
   C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
@@ -45,52 +43,51 @@ LINK MAP OF MODULE:  exp3 (EXP_3_FALL2019)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0008H     UNIT         ?DT?_PRINT_MEMORY?PRINT_BYTES
-            DATA    0010H     0005H     UNIT         ?DT?_PRINT_16BYTES?PRINT_BYTES
-                    0015H     000BH                  *** GAP ***
+                    0008H     0018H                  *** GAP ***
             BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
                     0021H.1   0000H.7                *** GAP ***
-            DATA    0022H     0034H     UNIT         _DATA_GROUP_
-            IDATA   0056H     0001H     UNIT         ?STACK
+            DATA    0022H     0028H     UNIT         _DATA_GROUP_
+            IDATA   004AH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
             CODE    0003H     0FD0H     UNIT         STA013_CONFIG
             CODE    0FD3H     035CH     UNIT         ?PR?PRINTF?PRINTF
-            CODE    132FH     01F1H     UNIT         ?C?LIB_CODE
-            CODE    1520H     017FH     UNIT         ?CO?STA013
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 2
+            CODE    132FH     0277H     UNIT         ?CO?STA013
+            CODE    15A6H     01F1H     UNIT         ?C?LIB_CODE
+            CODE    1797H     0115H     UNIT         ?PR?STA013_SEND_CFG_TABLE?STA013
+            CODE    18ACH     00BDH     UNIT         ?PR?_I2C_READ?I2C
+            CODE    1969H     00BDH     UNIT         ?PR?_STA013_SEND_CFG_FILE?STA013
+            CODE    1A26H     00B2H     UNIT         ?PR?_I2C_WRITE?I2C
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 2
 
 
-            CODE    169FH     017BH     UNIT         ?PR?_I2C_COMM?I2C
-            CODE    181AH     00DBH     UNIT         ?PR?STA013_INIT?STA013
-            CODE    18F5H     00B7H     UNIT         ?PR?_STA013_SEND_CFG_FILE?STA013
-            CODE    19ACH     0098H     UNIT         ?PR?_WRITE_PORT_BIT?OUTPUTS
-            CODE    1A44H     008CH     UNIT         ?PR?_STA013_TEST_READ?STA013
-            CODE    1AD0H     0088H     UNIT         ?PR?STA013_TEST_WRITE?STA013
-            CODE    1B58H     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
-            CODE    1BDDH     0078H     UNIT         ?PR?_PRINT_16BYTES?PRINT_BYTES
-            CODE    1C55H     0061H     UNIT         ?PR?_UART_INIT?UART
-            CODE    1CB6H     005FH     UNIT         ?PR?_PRINT_MEMORY?PRINT_BYTES
-            CODE    1D15H     0058H     UNIT         ?PR?_I2C_READ?I2C
-            CODE    1D6DH     0045H     UNIT         ?CO?PRINT_BYTES
-            CODE    1DB2H     003AH     UNIT         ?PR?MAIN?EXP_3_FALL2019
-            CODE    1DECH     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
-            CODE    1E24H     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-            CODE    1E4EH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
-            CODE    1E75H     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
-            CODE    1E9BH     001CH     UNIT         ?PR?STA013_TEST?STA013
-            CODE    1EB7H     0016H     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
-            CODE    1ECDH     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
-            CODE    1EE0H     000CH     UNIT         ?CO?EXP_3_FALL2019
-            CODE    1EECH     000CH     UNIT         ?C_C51STARTUP
-            CODE    1EF8H     0008H     UNIT         ?PR?_UART_TRANSMIT?UART
-            CODE    1F00H     0008H     UNIT         ?PR?UART_RECEIVE?UART
-            CODE    1F08H     0005H     UNIT         ?PR?_CLEAR_LCD_BIT?LCD_HARDWARE_FUNCTIONS
-            CODE    1F0DH     0005H     UNIT         ?PR?_LEDS_ON?LED_OUTPUTS
-            CODE    1F12H     0004H     UNIT         ?PR?_SET_LCD_BIT?LCD_HARDWARE_FUNCTIONS
-            CODE    1F16H     0004H     UNIT         ?PR?_LEDS_OFF?LED_OUTPUTS
-            CODE    1F1AH     0003H     UNIT         ?PR?_OUTPUT_LCD_DATA?LCD_HARDWARE_FUNCTIONS
+            CODE    1AD8H     0098H     UNIT         ?PR?_WRITE_PORT_BIT?OUTPUTS
+            CODE    1B70H     008DH     UNIT         ?PR?_STA013_TEST_READ_ID?STA013
+            CODE    1BFDH     0085H     UNIT         ?PR?_LCD_PRINT?LCD_ROUTINES
+            CODE    1C82H     007AH     UNIT         ?PR?STA013_INIT?STA013
+            CODE    1CFCH     0067H     UNIT         ?PR?MAIN?EXP_3_FALL2019
+            CODE    1D63H     0061H     UNIT         ?PR?_UART_INIT?UART
+            CODE    1DC4H     0044H     UNIT         ?CO?EXP_3_FALL2019
+            CODE    1E08H     003BH     UNIT         ?PR?_SEND_BYTE?I2C
+            CODE    1E43H     0038H     UNIT         ?PR?LCD_INIT?LCD_ROUTINES
+            CODE    1E7BH     002AH     UNIT         ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
+            CODE    1EA5H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    1ECCH     0026H     UNIT         ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+            CODE    1EF2H     0020H     UNIT         ?PR?_I2C_CLOCK_DELAY?I2C
+            CODE    1F12H     0015H     UNIT         ?PR?SEND_STOP?I2C
+            CODE    1F27H     0014H     UNIT         ?PR?GET_ACK?I2C
+            CODE    1F3BH     0013H     UNIT         ?PR?I2C_CLOCK_START?I2C
+            CODE    1F4EH     0013H     UNIT         ?PR?SEND_ACK?I2C
+            CODE    1F61H     000CH     UNIT         ?C_C51STARTUP
+            CODE    1F6DH     0009H     UNIT         ?PR?SEND_NACK?I2C
+            CODE    1F76H     0008H     UNIT         ?PR?_UART_TRANSMIT?UART
+            CODE    1F7EH     0008H     UNIT         ?PR?UART_RECEIVE?UART
+            CODE    1F86H     0005H     UNIT         ?PR?_CLEAR_LCD_BIT?LCD_HARDWARE_FUNCTIONS
+            CODE    1F8BH     0005H     UNIT         ?PR?_LEDS_ON?LED_OUTPUTS
+            CODE    1F90H     0004H     UNIT         ?PR?_SET_LCD_BIT?LCD_HARDWARE_FUNCTIONS
+            CODE    1F94H     0004H     UNIT         ?PR?_LEDS_OFF?LED_OUTPUTS
+            CODE    1F98H     0003H     UNIT         ?PR?_OUTPUT_LCD_DATA?LCD_HARDWARE_FUNCTIONS
 
 
 
@@ -107,11 +104,12 @@ SEGMENT                                                    BIT_GROUP          DA
   +--> ?PR?_LEDS_ON?LED_OUTPUTS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
   +--> ?PR?_UART_INIT?UART
-  +--> ?PR?_LEDS_OFF?LED_OUTPUTS
   +--> ?PR?LCD_INIT?LCD_ROUTINES
   +--> ?CO?EXP_3_FALL2019
   +--> ?PR?_LCD_PRINT?LCD_ROUTINES
   +--> ?PR?STA013_INIT?STA013
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_LEDS_OFF?LED_OUTPUTS
   +--> ?PR?UART_RECEIVE?UART
   +--> ?PR?_UART_TRANSMIT?UART
 
@@ -119,10 +117,10 @@ SEGMENT                                                    BIT_GROUP          DA
 
 ?PR?LCD_INIT?LCD_ROUTINES                               -----    -----      -----    -----
   +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 3
-
-
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
+
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 3
+
 
 ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS                   -----    -----      0029H    0001H
   +--> ?PR?_CLEAR_LCD_BIT?LCD_HARDWARE_FUNCTIONS
@@ -133,44 +131,64 @@ SEGMENT                                                    BIT_GROUP          DA
   +--> ?PR?_LCD_WRITE?LCD_HARDWARE_FUNCTIONS
   +--> ?PR?_TIMER0_DELAY_1MS?TIMER0_HARDWARE_DELAY_1MS
 
-?PR?STA013_INIT?STA013                                  -----    -----      0023H    0009H
+?PR?STA013_INIT?STA013                                  -----    -----      0023H    0001H
   +--> ?PR?_WRITE_PORT_BIT?OUTPUTS
-  +--> ?PR?STA013_TEST?STA013
+  +--> ?PR?_STA013_TEST_READ_ID?STA013
   +--> ?CO?STA013
   +--> ?PR?PRINTF?PRINTF
   +--> ?PR?_STA013_SEND_CFG_FILE?STA013
-  +--> ?PR?_I2C_COMM?I2C
+  +--> ?PR?STA013_SEND_CFG_TABLE?STA013
 
-?PR?STA013_TEST?STA013                                  -----    -----      002CH    0001H
-  +--> ?PR?_STA013_TEST_READ?STA013
-  +--> ?PR?STA013_TEST_WRITE?STA013
-
-?PR?_STA013_TEST_READ?STA013                            -----    -----      0031H    0006H
-  +--> ?PR?_WRITE_PORT_BIT?OUTPUTS
+?PR?_STA013_TEST_READ_ID?STA013                         -----    -----      0024H    0006H
   +--> ?PR?_I2C_READ?I2C
   +--> ?CO?STA013
   +--> ?PR?PRINTF?PRINTF
 
-?PR?_I2C_READ?I2C                                       -----    -----      0037H    000CH
-  +--> ?PR?_I2C_COMM?I2C
-
-?PR?_I2C_COMM?I2C                                       -----    -----      0043H    0013H
+?PR?_I2C_READ?I2C                                       -----    -----      002EH    000DH
+  +--> ?PR?_I2C_WRITE?I2C
   +--> ?PR?I2C_CLOCK_START?I2C
+  +--> ?PR?_SEND_BYTE?I2C
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+  +--> ?PR?SEND_NACK?I2C
+  +--> ?PR?SEND_ACK?I2C
+  +--> ?PR?SEND_STOP?I2C
+
+?PR?_I2C_WRITE?I2C                                      -----    -----      003BH    000FH
+  +--> ?PR?I2C_CLOCK_START?I2C
+  +--> ?PR?_SEND_BYTE?I2C
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+  +--> ?PR?SEND_STOP?I2C
+
+?PR?_SEND_BYTE?I2C                                      -----    -----      -----    -----
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+  +--> ?PR?GET_ACK?I2C
+
+?PR?GET_ACK?I2C                                         -----    -----      -----    -----
   +--> ?PR?_I2C_CLOCK_DELAY?I2C
 
-?PR?PRINTF?PRINTF                                       0020H.0  0001H.1    0037H    0014H
+?PR?SEND_STOP?I2C                                       -----    -----      -----    -----
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+
+?PR?SEND_NACK?I2C                                       -----    -----      -----    -----
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+
+?PR?SEND_ACK?I2C                                        -----    -----      -----    -----
+  +--> ?PR?_I2C_CLOCK_DELAY?I2C
+
+?PR?PRINTF?PRINTF                                       0020H.0  0001H.1    002EH    0014H
   +--> ?PR?PUTCHAR?PUTCHAR
 
-?PR?STA013_TEST_WRITE?STA013                            -----    -----      002DH    0004H
-  +--> ?PR?_WRITE_PORT_BIT?OUTPUTS
-  +--> ?PR?_I2C_COMM?I2C
-  +--> ?CO?STA013
-  +--> ?PR?PRINTF?PRINTF
-  +--> ?PR?_STA013_TEST_READ?STA013
+?PR?_STA013_SEND_CFG_FILE?STA013                        -----    -----      0024H    000BH
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 4
 
-?PR?_STA013_SEND_CFG_FILE?STA013                        -----    -----      002CH    000CH
-  +--> ?PR?_WRITE_PORT_BIT?OUTPUTS
-  +--> ?PR?_I2C_COMM?I2C
+
+  +--> ?PR?_I2C_WRITE?I2C
+
+?PR?STA013_SEND_CFG_TABLE?STA013                        -----    -----      0024H    000AH
+  +--> ?CO?STA013
+  +--> ?PR?_I2C_WRITE?I2C
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_I2C_READ?I2C
 
 
 
@@ -178,9 +196,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
 
   VALUE           TYPE          NAME
   ----------------------------------
-
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 4
-
 
   -------         MODULE        EXP_3_FALL2019
   C:0000H         SYMBOL        _ICE_DUMMY_
@@ -224,6 +239,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B0H.5       PUBLIC        P3_5
   B:0090H.7       PUBLIC        P1_7
   B:00B0H.6       PUBLIC        nWR
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 5
+
+
   B:00A8H.4       PUBLIC        ES
   B:0098H.0       PUBLIC        RI
   B:00D0H.7       PUBLIC        CY
@@ -239,10 +257,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D0H.2       PUBLIC        OV
   B:0090H.1       PUBLIC        SS
   B:00B8H.2       PUBLIC        PX1L
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 5
-
-
-  C:1DB2H         PUBLIC        main
+  C:1CFCH         PUBLIC        main
   B:00C8H.5       PUBLIC        RCLK
   B:00C8H.4       PUBLIC        TCLK
   B:00B8H.6       PUBLIC        PPCL
@@ -284,6 +299,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A8H.2       PUBLIC        EX1
   B:0088H.2       PUBLIC        IT1
   B:00D0H.0       PUBLIC        P
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 6
+
+
   B:0098H.7       PUBLIC        SM0
   B:0090H.2       PUBLIC        ECI
   B:0098H.6       PUBLIC        SM1
@@ -295,13 +313,11 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.0       PUBLIC        SDA
   B:00C8H.2       PUBLIC        TR2
   B:00A0H.0       PUBLIC        SW1
+  C:1DF9H         PUBLIC        exp3_string_success
   B:00A0H.1       PUBLIC        SW2
   B:00A0H.2       PUBLIC        SW3
   B:00A0H.3       PUBLIC        SW4
   B:0090H.6       PUBLIC        SCK
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 6
-
-
   B:0090H.1       PUBLIC        SCL
   B:00C8H.3       PUBLIC        EXEN2
   B:0098H.4       PUBLIC        REN
@@ -317,35 +333,47 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D0H.1       PUBLIC        F1
   D:00D0H         PUBLIC        PSW
   B:00D8H.0       PUBLIC        CCF0
-  C:1EE0H         PUBLIC        exp3_string
+  C:1DEDH         PUBLIC        exp3_string
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          MAIN
   -------         DO            MAIN
   D:0022H         SYMBOL        input_value
   -------         ENDDO         input_value
-  C:1DB2H         LINE#         14
-  C:1DB2H         LINE#         15
-  C:1DB2H         LINE#         18
-  C:1DB7H         LINE#         19
-  C:1DBAH         LINE#         20
-  C:1DBAH         LINE#         21
-  C:1DBAH         LINE#         22
-  C:1DBDH         LINE#         23
-  C:1DBDH         LINE#         24
-  C:1DBDH         LINE#         25
-  C:1DBDH         LINE#         26
-  C:1DBDH         LINE#         27
-  C:1DBDH         LINE#         28
-  C:1DC4H         LINE#         29
-  C:1DCBH         LINE#         30
-  C:1DD0H         LINE#         33
-  C:1DD3H         LINE#         34
-  C:1DDFH         LINE#         35
-  C:1DE2H         LINE#         37
-  C:1DE2H         LINE#         38
-  C:1DE2H         LINE#         40
-  C:1DE7H         LINE#         41
-  C:1DEAH         LINE#         43
+  C:1CFCH         LINE#         13
+  C:1CFCH         LINE#         14
+  C:1CFCH         LINE#         17
+  C:1D01H         LINE#         18
+  C:1D04H         LINE#         19
+  C:1D04H         LINE#         20
+  C:1D04H         LINE#         21
+  C:1D07H         LINE#         22
+  C:1D07H         LINE#         23
+  C:1D07H         LINE#         24
+  C:1D07H         LINE#         25
+  C:1D07H         LINE#         26
+  C:1D07H         LINE#         27
+  C:1D0EH         LINE#         28
+  C:1D15H         LINE#         31
+  C:1D18H         LINE#         32
+  C:1D24H         LINE#         33
+  C:1D2AH         LINE#         34
+  C:1D2AH         LINE#         35
+  C:1D33H         LINE#         36
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 7
+
+
+  C:1D3FH         LINE#         37
+  C:1D44H         LINE#         38
+  C:1D46H         LINE#         40
+  C:1D46H         LINE#         41
+  C:1D4FH         LINE#         42
+  C:1D54H         LINE#         43
+  C:1D54H         LINE#         44
+  C:1D59H         LINE#         46
+  C:1D59H         LINE#         47
+  C:1D59H         LINE#         48
+  C:1D5EH         LINE#         49
+  C:1D61H         LINE#         50
   -------         ENDPROC       MAIN
   -------         ENDMOD        EXP_3_FALL2019
 
@@ -354,14 +382,11 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D8H.2       PUBLIC        CCF2
   B:00D8H.3       PUBLIC        CCF3
   D:0080H         PUBLIC        P0
-  C:1EB7H         PUBLIC        _I2C_clock_delay
+  C:1EFCH         PUBLIC        _I2C_clock_delay
   B:00D8H.4       PUBLIC        CCF4
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 7
-
-
   B:00B0H.4       PUBLIC        T0
   B:00D0H.6       PUBLIC        AC
   B:00B0H.5       PUBLIC        T1
@@ -394,14 +419,18 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.6       PUBLIC        P1_6
   B:00B0H.5       PUBLIC        P3_5
   B:0090H.7       PUBLIC        P1_7
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 8
+
+
   B:00B0H.6       PUBLIC        nWR
   B:00A8H.4       PUBLIC        ES
   B:0098H.0       PUBLIC        RI
   B:00D0H.7       PUBLIC        CY
-  C:1D15H         PUBLIC        _I2C_read
+  C:18ACH         PUBLIC        _I2C_read
   B:0098H.1       PUBLIC        TI
   B:00B8H.1       PUBLIC        PT0L
   B:00B8H.3       PUBLIC        PT1L
+  C:1E08H         PUBLIC        _send_byte
   B:00B8H.5       PUBLIC        PT2L
   B:0090H.1       PUBLIC        T2EX
   D:00D8H         PUBLIC        CCON
@@ -410,7 +439,8 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D0H.2       PUBLIC        OV
   B:0090H.1       PUBLIC        SS
   B:00B8H.2       PUBLIC        PX1L
-  C:169FH         PUBLIC        _I2C_comm
+  C:1F6DH         PUBLIC        send_NACK
+  C:1A26H         PUBLIC        _I2C_write
   B:00C8H.5       PUBLIC        RCLK
   B:00C8H.4       PUBLIC        TCLK
   B:00B8H.6       PUBLIC        PPCL
@@ -419,9 +449,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.5       PUBLIC        YELLOWLED
   B:0080H.0       PUBLIC        AD0
   D:0089H         PUBLIC        TMOD
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 8
-
-
   D:0088H         PUBLIC        TCON
   B:0080H.1       PUBLIC        AD1
   B:0080H.2       PUBLIC        AD2
@@ -440,7 +467,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0088H.1       PUBLIC        IE0
   B:00A0H.6       PUBLIC        AMBERLED
   B:0088H.3       PUBLIC        IE1
-  C:1ECDH         PUBLIC        I2C_clock_start
+  C:1F3BH         PUBLIC        I2C_clock_start
   B:00B0H.7       PUBLIC        E
   B:00A0H.7       PUBLIC        GREENLED
   B:00A8H.1       PUBLIC        ET0
@@ -452,6 +479,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0098H.2       PUBLIC        RB8
   B:00A8H.0       PUBLIC        EX0
   B:0088H.0       PUBLIC        IT0
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 9
+
+
   D:008DH         PUBLIC        TH1
   B:0098H.3       PUBLIC        TB8
   B:00A8H.2       PUBLIC        EX1
@@ -462,6 +492,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0098H.6       PUBLIC        SM1
   D:008BH         PUBLIC        TL1
   B:0098H.5       PUBLIC        SM2
+  C:1F12H         PUBLIC        send_STOP
   B:00D0H.3       PUBLIC        RS0
   B:0088H.4       PUBLIC        TR0
   B:00D0H.4       PUBLIC        RS1
@@ -469,6 +500,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.0       PUBLIC        SDA
   B:00C8H.2       PUBLIC        TR2
   B:00A0H.0       PUBLIC        SW1
+  C:1F4EH         PUBLIC        send_ACK
   B:00A0H.1       PUBLIC        SW2
   B:00A0H.2       PUBLIC        SW3
   B:00A0H.3       PUBLIC        SW4
@@ -479,192 +511,245 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.2       PUBLIC        AD10
   B:00A0H.3       PUBLIC        AD11
   D:00C8H         PUBLIC        T2CON
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 9
-
-
   B:00A0H.4       PUBLIC        AD12
   B:00A0H.5       PUBLIC        AD13
   B:00A0H.6       PUBLIC        AD14
   B:00A0H.7       PUBLIC        AD15
   B:00B8H.4       PUBLIC        PLS
+  C:1F27H         PUBLIC        get_ACK
   B:00D0H.5       PUBLIC        F0
   B:00D0H.1       PUBLIC        F1
   D:00D0H         PUBLIC        PSW
   B:00D8H.0       PUBLIC        CCF0
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          I2C_CLOCK_START
-  C:1ECDH         LINE#         13
-  C:1ECDH         LINE#         14
-  C:1ECDH         LINE#         16
-  C:1ED0H         LINE#         17
-  C:1ED3H         LINE#         18
-  C:1ED5H         LINE#         19
-  C:1ED8H         LINE#         20
-  C:1EDBH         LINE#         21
-  C:1EDDH         LINE#         22
-  C:1EDFH         LINE#         23
+  C:1F3BH         LINE#         14
+  C:1F3BH         LINE#         15
+  C:1F3BH         LINE#         17
+  C:1F3EH         LINE#         18
+  C:1F41H         LINE#         19
+  C:1F43H         LINE#         20
+  C:1F46H         LINE#         21
+  C:1F49H         LINE#         22
+  C:1F4BH         LINE#         23
+  C:1F4DH         LINE#         24
   -------         ENDPROC       I2C_CLOCK_START
+  -------         PROC          L?0057
+  -------         ENDPROC       L?0057
   -------         PROC          _I2C_CLOCK_DELAY
   D:0007H         SYMBOL        control
-  C:1EB7H         LINE#         25
-  C:1EB7H         LINE#         26
-  C:1EB7H         LINE#         27
-  C:1EBAH         LINE#         28
-  C:1EBAH         LINE#         29
-  C:1EBDH         LINE#         30
-  C:1EBDH         LINE#         32
-  C:1EBFH         LINE#         33
-  C:1EC2H         LINE#         34
-  C:1EC2H         LINE#         35
-  C:1EC5H         LINE#         36
-  C:1EC8H         LINE#         37
-  C:1ECAH         LINE#         38
-  C:1ECCH         LINE#         39
-  C:1ECCH         LINE#         40
+  C:1EFCH         LINE#         26
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 10
+
+
+  C:1EFCH         LINE#         27
+  C:1EFCH         LINE#         28
+  C:1EFFH         LINE#         29
+  C:1EFFH         LINE#         30
+  C:1F02H         LINE#         31
+  C:1F02H         LINE#         33
+  C:1F04H         LINE#         34
+  C:1F07H         LINE#         35
+  C:1F07H         LINE#         36
+  C:1F0AH         LINE#         37
+  C:1F0DH         LINE#         38
+  C:1F0FH         LINE#         39
+  C:1F11H         LINE#         40
+  C:1F11H         LINE#         41
   -------         ENDPROC       _I2C_CLOCK_DELAY
-  -------         PROC          _I2C_COMM
-  D:0043H         SYMBOL        comm_type
-  D:0005H         SYMBOL        device_addr
-  D:0045H         SYMBOL        int_addr
-  D:0049H         SYMBOL        int_addr_sz
-  D:004AH         SYMBOL        num_bytes
-  D:004CH         SYMBOL        data_array
+  -------         PROC          GET_ACK
+  -------         DO            GET_ACK
+  D:0007H         SYMBOL        sent_bit
+  -------         ENDDO         sent_bit
+  C:1F27H         LINE#         43
+  C:1F27H         LINE#         44
+  C:1F27H         LINE#         47
+  C:1F27H         LINE#         48
+  C:1F27H         LINE#         49
+  C:1F27H         LINE#         50
+  C:1F2AH         LINE#         51
+  C:1F2CH         LINE#         52
+  C:1F2FH         LINE#         54
+  C:1F33H         LINE#         55
+  C:1F38H         LINE#         56
+  C:1F3AH         LINE#         57
+  -------         ENDPROC       GET_ACK
+  -------         PROC          SEND_ACK
+  C:1F4EH         LINE#         59
+  C:1F4EH         LINE#         60
+  C:1F4EH         LINE#         61
+  C:1F53H         LINE#         62
+  C:1F55H         LINE#         63
+  C:1F57H         LINE#         64
+  C:1F5BH         LINE#         65
+  C:1F5DH         LINE#         66
+  C:1F60H         LINE#         67
+  -------         ENDPROC       SEND_ACK
+  -------         PROC          SEND_NACK
+  C:1F6DH         LINE#         69
+  C:1F6DH         LINE#         70
+  C:1F6DH         LINE#         71
+  C:1F6DH         LINE#         72
+  C:1F6DH         LINE#         73
+  C:1F6DH         LINE#         74
+  C:1F70H         LINE#         75
+  C:1F72H         LINE#         76
+  C:1F75H         LINE#         77
+  -------         ENDPROC       SEND_NACK
+  -------         PROC          SEND_STOP
+  C:1F12H         LINE#         79
+  C:1F12H         LINE#         80
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 11
+
+
+  C:1F12H         LINE#         81
+  C:1F17H         LINE#         82
+  C:1F19H         LINE#         83
+  C:1F1BH         LINE#         84
+  C:1F1FH         LINE#         85
+  C:1F21H         LINE#         86
+  C:1F24H         LINE#         87
+  C:1F26H         LINE#         88
+  -------         ENDPROC       SEND_STOP
+  -------         PROC          _SEND_BYTE
+  D:0006H         SYMBOL        send_val
+  -------         DO            send_val
+  D:0005H         SYMBOL        num_bits
+  D:0003H         SYMBOL        send_bit
+  D:0007H         SYMBOL        sent_bit
+  -------         ENDDO         sent_bit
+  C:1E08H         LINE#         90
+  C:1E0AH         LINE#         91
+  C:1E0AH         LINE#         93
+  C:1E0CH         LINE#         95
+  C:1E0CH         LINE#         96
+  C:1E11H         LINE#         97
+  C:1E13H         LINE#         98
+  C:1E14H         LINE#         99
+  C:1E21H         LINE#         100
+  C:1E25H         LINE#         102
+  C:1E2AH         LINE#         103
+  C:1E2CH         LINE#         104
+  C:1E2FH         LINE#         106
+  C:1E33H         LINE#         107
+  C:1E39H         LINE#         108
+  C:1E3FH         LINE#         109
+  C:1E42H         LINE#         110
+  -------         ENDPROC       _SEND_BYTE
+  -------         PROC          _I2C_WRITE
+  D:0006H         SYMBOL        device_addr
+  D:003CH         SYMBOL        int_addr
+  D:0040H         SYMBOL        int_addr_sz
+  D:0041H         SYMBOL        num_bytes
+  D:0043H         SYMBOL        data_array
   -------         DO            data_array
-  D:004FH         SYMBOL        return_val
-  D:0050H         SYMBOL        send_val
-  D:0051H         SYMBOL        rcv_val
-  D:0006H         SYMBOL        num_bits
-  D:0052H         SYMBOL        sent_bit
-  D:0053H         SYMBOL        send_bit
-  D:0054H         SYMBOL        index
+  D:0046H         SYMBOL        return_val
+  D:0047H         SYMBOL        send_val
+  D:0048H         SYMBOL        index
   -------         ENDDO         index
-  C:169FH         LINE#         42
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 10
+  C:1A26H         LINE#         112
+  C:1A28H         LINE#         113
+  C:1A28H         LINE#         117
+  C:1A2AH         LINE#         118
+  C:1A2CH         LINE#         120
+  C:1A37H         LINE#         121
+  C:1A40H         LINE#         122
+  C:1A43H         LINE#         123
+  C:1A48H         LINE#         124
+  C:1A4BH         LINE#         126
+  C:1A4DH         LINE#         129
+  C:1A54H         LINE#         130
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 12
 
 
-  C:16A1H         LINE#         43
-  C:16A1H         LINE#         46
-  C:16A4H         LINE#         47
-  C:16ACH         LINE#         48
-  C:16AEH         LINE#         49
-  C:16B0H         LINE#         50
-  C:16B8H         LINE#         51
-  C:16C4H         LINE#         52
-  C:16C4H         LINE#         53
-  C:16C7H         LINE#         54
-  C:16CCH         LINE#         55
-  C:16D4H         LINE#         57
-  C:16D6H         LINE#         58
-  C:16DBH         LINE#         61
-  C:16DBH         LINE#         63
-  C:16DDH         LINE#         65
-  C:16DDH         LINE#         66
-  C:16E2H         LINE#         67
-  C:16E4H         LINE#         68
-  C:16E5H         LINE#         69
-  C:16EAH         LINE#         70
-  C:16EAH         LINE#         71
-  C:16ECH         LINE#         72
-  C:16F2H         LINE#         73
-  C:16F4H         LINE#         75
-  C:16F4H         LINE#         76
-  C:1703H         LINE#         77
-  C:1707H         LINE#         78
-  C:1707H         LINE#         79
-  C:170CH         LINE#         80
-  C:170EH         LINE#         81
-  C:1711H         LINE#         82
-  C:1717H         LINE#         83
-  C:171CH         LINE#         84
-  C:171CH         LINE#         85
-  C:1720H         LINE#         86
-  C:1722H         LINE#         88
-  C:1722H         LINE#         89
-  C:172BH         LINE#         90
-  C:172BH         LINE#         91
-  C:1734H         LINE#         93
-  C:173DH         LINE#         94
-  C:173DH         LINE#         95
-  C:1743H         LINE#         96
-  C:1743H         LINE#         98
-  C:1754H         LINE#         99
-  C:175CH         LINE#         100
-  C:1764H         LINE#         101
-  C:176AH         LINE#         102
-  C:176AH         LINE#         103
-  C:176DH         LINE#         104
-  C:176FH         LINE#         106
-  C:176FH         LINE#         107
-  C:1772H         LINE#         108
-  C:1772H         LINE#         109
-  C:1777H         LINE#         110
-  C:1779H         LINE#         111
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 11
-
-
-  C:177FH         LINE#         112
-  C:1783H         LINE#         113
-  C:1785H         LINE#         114
-  C:178AH         LINE#         115
-  C:178AH         LINE#         117
-  C:178AH         LINE#         119
-  C:178FH         LINE#         120
-  C:1791H         LINE#         121
-  C:1793H         LINE#         122
-  C:1797H         LINE#         123
-  C:1797H         LINE#         124
-  C:179BH         LINE#         125
-  C:17AAH         LINE#         126
-  C:17ACH         LINE#         128
-  C:17ACH         LINE#         129
-  C:17B4H         LINE#         130
-  C:17C5H         LINE#         131
-  C:17CDH         LINE#         132
-  C:17CDH         LINE#         134
-  C:17D2H         LINE#         135
-  C:17D4H         LINE#         136
-  C:17D7H         LINE#         137
-  C:17DDH         LINE#         138
-  C:17E4H         LINE#         139
-  C:17E4H         LINE#         140
-  C:17E4H         LINE#         141
-  C:17F8H         LINE#         144
-  C:17FEH         LINE#         145
-  C:17FEH         LINE#         146
-  C:1803H         LINE#         147
-  C:1805H         LINE#         148
-  C:1807H         LINE#         149
-  C:180BH         LINE#         150
-  C:180DH         LINE#         151
-  C:1810H         LINE#         152
-  C:1815H         LINE#         153
-  C:1817H         LINE#         154
-  C:1817H         LINE#         155
-  C:1817H         LINE#         156
-  C:1819H         LINE#         157
-  -------         ENDPROC       _I2C_COMM
+  C:1A5AH         LINE#         131
+  C:1A5AH         LINE#         132
+  C:1A5FH         LINE#         133
+  C:1A62H         LINE#         134
+  C:1A62H         LINE#         136
+  C:1A72H         LINE#         137
+  C:1A72H         LINE#         138
+  C:1A80H         LINE#         139
+  C:1A80H         LINE#         140
+  C:1A97H         LINE#         141
+  C:1A99H         LINE#         143
+  C:1A99H         LINE#         144
+  C:1AB0H         LINE#         145
+  C:1AB0H         LINE#         147
+  C:1AB7H         LINE#         148
+  C:1ABDH         LINE#         149
+  C:1ABDH         LINE#         150
+  C:1AC2H         LINE#         151
+  C:1AC5H         LINE#         152
+  C:1AC5H         LINE#         153
+  C:1ACFH         LINE#         154
+  C:1AD2H         LINE#         155
+  C:1AD7H         LINE#         156
+  C:1AD7H         LINE#         158
+  -------         ENDPROC       _I2C_WRITE
   -------         PROC          _I2C_READ
-  D:0037H         SYMBOL        device_addr
-  D:0038H         SYMBOL        int_addr
-  D:003CH         SYMBOL        int_addr_sz
-  D:003DH         SYMBOL        num_bytes
-  D:003FH         SYMBOL        data_array
+  D:002EH         SYMBOL        device_addr
+  D:002FH         SYMBOL        int_addr
+  D:0033H         SYMBOL        int_addr_sz
+  D:0034H         SYMBOL        num_bytes
+  D:0036H         SYMBOL        data_array
   -------         DO            data_array
-  D:0042H         SYMBOL        return_val
-  -------         ENDDO         return_val
-  C:1D15H         LINE#         160
-  C:1D17H         LINE#         161
-  C:1D17H         LINE#         162
-  C:1D1AH         LINE#         163
-  C:1D1EH         LINE#         164
-  C:1D1EH         LINE#         165
-  C:1D42H         LINE#         166
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 12
+  D:0039H         SYMBOL        return_val
+  D:0007H         SYMBOL        send_val
+  D:003AH         SYMBOL        rcv_val
+  D:0007H         SYMBOL        rcv_bit
+  D:0006H         SYMBOL        num_bits
+  D:0004H         SYMBOL        index
+  -------         ENDDO         index
+  C:18ACH         LINE#         160
+  C:18AEH         LINE#         161
+  C:18AEH         LINE#         165
+  C:18B1H         LINE#         166
+  C:18D1H         LINE#         168
+  C:18D3H         LINE#         169
+  C:18D5H         LINE#         170
+  C:18DEH         LINE#         171
+  C:18E1H         LINE#         173
+  C:18E6H         LINE#         174
+  C:18E9H         LINE#         177
+  C:18EBH         LINE#         180
+  C:18F0H         LINE#         181
+  C:18F6H         LINE#         182
+  C:18F6H         LINE#         183
+  C:18FBH         LINE#         184
+  C:18FEH         LINE#         185
+  C:18FEH         LINE#         188
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 13
 
 
-  C:1D42H         LINE#         167
-  C:1D4BH         LINE#         168
-  C:1D6CH         LINE#         169
+  C:190AH         LINE#         189
+  C:190AH         LINE#         190
+  C:190CH         LINE#         191
+  C:190FH         LINE#         192
+  C:1915H         LINE#         193
+  C:1915H         LINE#         194
+  C:1916H         LINE#         195
+  C:1916H         LINE#         196
+  C:1916H         LINE#         197
+  C:1916H         LINE#         198
+  C:1919H         LINE#         199
+  C:191BH         LINE#         200
+  C:191EH         LINE#         201
+  C:1923H         LINE#         202
+  C:192EH         LINE#         203
+  C:1930H         LINE#         204
+  C:193FH         LINE#         205
+  C:1951H         LINE#         206
+  C:1951H         LINE#         207
+  C:1954H         LINE#         208
+  C:1956H         LINE#         210
+  C:1956H         LINE#         211
+  C:1959H         LINE#         212
+  C:1959H         LINE#         213
+  C:1960H         LINE#         215
+  C:1963H         LINE#         216
+  C:1968H         LINE#         217
+  C:1968H         LINE#         218
   -------         ENDPROC       _I2C_READ
   -------         ENDMOD        I2C
 
@@ -694,6 +779,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B0H.1       PUBLIC        TxD
   B:0090H.3       PUBLIC        CEX0
   B:0090H.1       PUBLIC        P1_1
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 14
+
+
   B:0090H.4       PUBLIC        CEX1
   B:0090H.2       PUBLIC        P1_2
   B:00C8H.0       PUBLIC        CP
@@ -714,20 +802,17 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0098H.0       PUBLIC        RI
   B:00D0H.7       PUBLIC        CY
   B:0098H.1       PUBLIC        TI
-  C:1F08H         PUBLIC        _Clear_LCD_bit
+  C:1F86H         PUBLIC        _Clear_LCD_bit
   B:00B8H.1       PUBLIC        PT0L
-  C:1E24H         PUBLIC        _LCD_Write
+  C:1E7BH         PUBLIC        _LCD_Write
   B:00B8H.3       PUBLIC        PT1L
   B:00B8H.5       PUBLIC        PT2L
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 13
-
-
   B:0090H.1       PUBLIC        T2EX
   D:00D8H         PUBLIC        CCON
   B:00B0H.6       PUBLIC        RS
   B:00B8H.0       PUBLIC        PX0L
   B:00D0H.2       PUBLIC        OV
-  C:1F1AH         PUBLIC        _Output_LCD_data
+  C:1F98H         PUBLIC        _Output_LCD_data
   B:0090H.1       PUBLIC        SS
   B:00B8H.2       PUBLIC        PX1L
   B:00C8H.5       PUBLIC        RCLK
@@ -754,6 +839,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.1       PUBLIC        AD9
   B:0088H.1       PUBLIC        IE0
   B:00A0H.6       PUBLIC        AMBERLED
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 15
+
+
   B:0088H.3       PUBLIC        IE1
   B:00B0H.7       PUBLIC        E
   B:00A0H.7       PUBLIC        GREENLED
@@ -779,16 +867,13 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D0H.4       PUBLIC        RS1
   B:0088H.6       PUBLIC        TR1
   B:0090H.0       PUBLIC        SDA
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 14
-
-
   B:00C8H.2       PUBLIC        TR2
   B:00A0H.0       PUBLIC        SW1
   B:00A0H.1       PUBLIC        SW2
   B:00A0H.2       PUBLIC        SW3
   B:00A0H.3       PUBLIC        SW4
   B:0090H.6       PUBLIC        SCK
-  C:1F12H         PUBLIC        _Set_LCD_bit
+  C:1F90H         PUBLIC        _Set_LCD_bit
   B:0090H.1       PUBLIC        SCL
   B:00C8H.3       PUBLIC        EXEN2
   B:0098H.4       PUBLIC        REN
@@ -808,44 +893,44 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   -------         PROC          _LCD_WRITE
   D:0007H         SYMBOL        RegSelect
   D:0029H         SYMBOL        LCD_Data
-  C:1E24H         LINE#         20
-  C:1E26H         LINE#         21
-  C:1E26H         LINE#         22
-  C:1E29H         LINE#         23
-  C:1E29H         LINE#         24
-  C:1E2EH         LINE#         25
-  C:1E30H         LINE#         27
-  C:1E30H         LINE#         28
-  C:1E35H         LINE#         29
-  C:1E35H         LINE#         30
-  C:1E3AH         LINE#         31
-  C:1E3FH         LINE#         32
-  C:1E44H         LINE#         33
-  C:1E49H         LINE#         34
+  C:1E7BH         LINE#         20
+  C:1E7DH         LINE#         21
+  C:1E7DH         LINE#         22
+  C:1E80H         LINE#         23
+  C:1E80H         LINE#         24
+  C:1E85H         LINE#         25
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 16
+
+
+  C:1E87H         LINE#         27
+  C:1E87H         LINE#         28
+  C:1E8CH         LINE#         29
+  C:1E8CH         LINE#         30
+  C:1E91H         LINE#         31
+  C:1E96H         LINE#         32
+  C:1E9BH         LINE#         33
+  C:1EA0H         LINE#         34
   -------         ENDPROC       _LCD_WRITE
   -------         PROC          _OUTPUT_LCD_DATA
   D:0007H         SYMBOL        Port_Data
-  C:1F1AH         LINE#         48
-  C:1F1AH         LINE#         49
-  C:1F1AH         LINE#         50
-  C:1F1CH         LINE#         51
+  C:1F98H         LINE#         48
+  C:1F98H         LINE#         49
+  C:1F98H         LINE#         50
+  C:1F9AH         LINE#         51
   -------         ENDPROC       _OUTPUT_LCD_DATA
   -------         PROC          _CLEAR_LCD_BIT
   D:0007H         SYMBOL        Bit_Data
-  C:1F08H         LINE#         61
-  C:1F08H         LINE#         62
-  C:1F08H         LINE#         63
-  C:1F0CH         LINE#         64
+  C:1F86H         LINE#         61
+  C:1F86H         LINE#         62
+  C:1F86H         LINE#         63
+  C:1F8AH         LINE#         64
   -------         ENDPROC       _CLEAR_LCD_BIT
   -------         PROC          _SET_LCD_BIT
   D:0007H         SYMBOL        Bit_Data
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 15
-
-
-  C:1F12H         LINE#         74
-  C:1F12H         LINE#         75
-  C:1F12H         LINE#         76
-  C:1F15H         LINE#         77
+  C:1F90H         LINE#         74
+  C:1F90H         LINE#         75
+  C:1F90H         LINE#         76
+  C:1F93H         LINE#         77
   -------         ENDPROC       _SET_LCD_BIT
   -------         ENDMOD        LCD_HARDWARE_FUNCTIONS
 
@@ -874,6 +959,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B0H.1       PUBLIC        TxD
   B:0090H.3       PUBLIC        CEX0
   B:0090H.4       PUBLIC        CEX1
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 17
+
+
   B:00C8H.0       PUBLIC        CP
   B:00D8H.6       PUBLIC        CR
   B:00C8H.6       PUBLIC        EXF2
@@ -899,9 +987,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0080H.0       PUBLIC        AD0
   D:0088H         PUBLIC        TCON
   B:0080H.1       PUBLIC        AD1
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 16
-
-
   B:0080H.2       PUBLIC        AD2
   B:00C8H.1       PUBLIC        CnT2
   B:0080H.3       PUBLIC        AD3
@@ -915,9 +1000,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.1       PUBLIC        AD9
   B:0088H.1       PUBLIC        IE0
   B:0088H.3       PUBLIC        IE1
-  C:1B58H         PUBLIC        _LCD_print
+  C:1BFDH         PUBLIC        _LCD_print
   B:00A8H.1       PUBLIC        ET0
-  C:1DECH         PUBLIC        LCD_Init
+  C:1E43H         PUBLIC        LCD_Init
   B:00A8H.3       PUBLIC        ET1
   B:0088H.5       PUBLIC        TF0
   B:00A8H.5       PUBLIC        ET2
@@ -934,6 +1019,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.2       PUBLIC        ECI
   B:0098H.6       PUBLIC        SM1
   B:0098H.5       PUBLIC        SM2
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 18
+
+
   B:00D0H.3       PUBLIC        RS0
   B:0088H.4       PUBLIC        TR0
   B:00D0H.4       PUBLIC        RS1
@@ -956,19 +1044,16 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D8H.0       PUBLIC        CCF0
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          LCD_INIT
-  C:1DECH         LINE#         14
-  C:1DECH         LINE#         15
-  C:1DECH         LINE#         16
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 17
-
-
-  C:1DF3H         LINE#         17
-  C:1DFAH         LINE#         18
-  C:1E01H         LINE#         19
-  C:1E08H         LINE#         20
-  C:1E0FH         LINE#         21
-  C:1E16H         LINE#         22
-  C:1E1DH         LINE#         23
+  C:1E43H         LINE#         14
+  C:1E43H         LINE#         15
+  C:1E43H         LINE#         16
+  C:1E4AH         LINE#         17
+  C:1E51H         LINE#         18
+  C:1E58H         LINE#         19
+  C:1E5FH         LINE#         20
+  C:1E66H         LINE#         21
+  C:1E6DH         LINE#         22
+  C:1E74H         LINE#         23
   -------         ENDPROC       LCD_INIT
   -------         PROC          _LCD_PRINT
   D:0007H         SYMBOL        address
@@ -978,34 +1063,37 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:0027H         SYMBOL        index
   D:0028H         SYMBOL        character
   -------         ENDDO         character
-  C:1B58H         LINE#         28
-  C:1B60H         LINE#         29
-  C:1B60H         LINE#         31
-  C:1B64H         LINE#         32
-  C:1B64H         LINE#         33
-  C:1B6DH         LINE#         34
-  C:1B74H         LINE#         35
-  C:1B74H         LINE#         36
-  C:1B78H         LINE#         37
-  C:1B78H         LINE#         38
-  C:1B7AH         LINE#         39
-  C:1B8AH         LINE#         40
-  C:1B8EH         LINE#         41
-  C:1B8EH         LINE#         42
-  C:1B94H         LINE#         43
-  C:1B9BH         LINE#         44
-  C:1B9DH         LINE#         45
-  C:1BAEH         LINE#         46
-  C:1BB0H         LINE#         47
-  C:1BB0H         LINE#         49
-  C:1BB0H         LINE#         50
-  C:1BBAH         LINE#         51
-  C:1BBAH         LINE#         52
-  C:1BCBH         LINE#         53
-  C:1BD1H         LINE#         54
-  C:1BD8H         LINE#         55
-  C:1BDCH         LINE#         56
-  C:1BDCH         LINE#         57
+  C:1BFDH         LINE#         28
+  C:1C05H         LINE#         29
+  C:1C05H         LINE#         31
+  C:1C09H         LINE#         32
+  C:1C09H         LINE#         33
+  C:1C12H         LINE#         34
+  C:1C19H         LINE#         35
+  C:1C19H         LINE#         36
+  C:1C1DH         LINE#         37
+  C:1C1DH         LINE#         38
+  C:1C1FH         LINE#         39
+  C:1C2FH         LINE#         40
+  C:1C33H         LINE#         41
+  C:1C33H         LINE#         42
+  C:1C39H         LINE#         43
+  C:1C40H         LINE#         44
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 19
+
+
+  C:1C42H         LINE#         45
+  C:1C53H         LINE#         46
+  C:1C55H         LINE#         47
+  C:1C55H         LINE#         49
+  C:1C55H         LINE#         50
+  C:1C5FH         LINE#         51
+  C:1C5FH         LINE#         52
+  C:1C70H         LINE#         53
+  C:1C76H         LINE#         54
+  C:1C7DH         LINE#         55
+  C:1C81H         LINE#         56
+  C:1C81H         LINE#         57
   -------         ENDPROC       _LCD_PRINT
   -------         ENDMOD        LCD_ROUTINES
 
@@ -1019,15 +1107,12 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   B:00B0H.4       PUBLIC        T0
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 18
-
-
   B:00D0H.6       PUBLIC        AC
   B:00B0H.5       PUBLIC        T1
   B:00B0H.7       PUBLIC        nRD
   B:0090H.0       PUBLIC        T2
   B:00A8H.7       PUBLIC        EA
-  C:1F0DH         PUBLIC        _LEDS_ON
+  C:1F8BH         PUBLIC        _LEDS_ON
   B:00A8H.6       PUBLIC        EC
   B:00D8H.7       PUBLIC        CF
   B:00B0H.2       PUBLIC        nINT0
@@ -1054,6 +1139,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.6       PUBLIC        P1_6
   B:00B0H.5       PUBLIC        P3_5
   B:0090H.7       PUBLIC        P1_7
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 20
+
+
   B:00B0H.6       PUBLIC        nWR
   B:00A8H.4       PUBLIC        ES
   B:0098H.0       PUBLIC        RI
@@ -1079,9 +1167,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:0088H         PUBLIC        TCON
   B:0080H.1       PUBLIC        AD1
   B:0080H.2       PUBLIC        AD2
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 19
-
-
   B:00B0H.1       PUBLIC        per_RxD
   B:00C8H.1       PUBLIC        CnT2
   B:0080H.3       PUBLIC        AD3
@@ -1098,7 +1183,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.6       PUBLIC        AMBERLED
   B:0088H.3       PUBLIC        IE1
   B:00B0H.7       PUBLIC        E
-  C:1F16H         PUBLIC        _LEDS_OFF
+  C:1F94H         PUBLIC        _LEDS_OFF
   B:00A0H.7       PUBLIC        GREENLED
   B:00A8H.1       PUBLIC        ET0
   B:00A8H.3       PUBLIC        ET1
@@ -1114,6 +1199,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0088H.2       PUBLIC        IT1
   B:00D0H.0       PUBLIC        P
   B:0098H.7       PUBLIC        SM0
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 21
+
+
   B:0090H.2       PUBLIC        ECI
   B:0098H.6       PUBLIC        SM1
   B:0098H.5       PUBLIC        SM2
@@ -1139,9 +1227,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.6       PUBLIC        AD14
   B:00A0H.7       PUBLIC        AD15
   B:00B8H.4       PUBLIC        PLS
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 20
-
-
   B:00D0H.5       PUBLIC        F0
   B:00D0H.1       PUBLIC        F1
   D:00D0H         PUBLIC        PSW
@@ -1149,17 +1234,17 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          _LEDS_ON
   D:0007H         SYMBOL        LED_bits
-  C:1F0DH         LINE#         18
-  C:1F0DH         LINE#         19
-  C:1F0DH         LINE#         20
-  C:1F11H         LINE#         21
+  C:1F8BH         LINE#         18
+  C:1F8BH         LINE#         19
+  C:1F8BH         LINE#         20
+  C:1F8FH         LINE#         21
   -------         ENDPROC       _LEDS_ON
   -------         PROC          _LEDS_OFF
   D:0007H         SYMBOL        LED_bits
-  C:1F16H         LINE#         33
-  C:1F16H         LINE#         34
-  C:1F16H         LINE#         35
-  C:1F19H         LINE#         36
+  C:1F94H         LINE#         33
+  C:1F94H         LINE#         34
+  C:1F94H         LINE#         35
+  C:1F97H         LINE#         36
   -------         ENDPROC       _LEDS_OFF
   -------         ENDMOD        LED_OUTPUTS
 
@@ -1174,6 +1259,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:00B0H         PUBLIC        P3
   B:00B0H.4       PUBLIC        T0
   B:00D0H.6       PUBLIC        AC
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 22
+
+
   B:00B0H.5       PUBLIC        T1
   B:00B0H.7       PUBLIC        nRD
   B:0090H.0       PUBLIC        T2
@@ -1199,9 +1287,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B0H.3       PUBLIC        P3_3
   B:0090H.5       PUBLIC        P1_5
   B:00C8H.6       PUBLIC        EXF2
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 21
-
-
   D:00B8H         PUBLIC        IPL0
   B:00B0H.4       PUBLIC        P3_4
   B:0090H.6       PUBLIC        P1_6
@@ -1234,6 +1319,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0080H.2       PUBLIC        AD2
   B:00B0H.1       PUBLIC        per_RxD
   B:00C8H.1       PUBLIC        CnT2
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 23
+
+
   B:0080H.3       PUBLIC        AD3
   B:0090H.5       PUBLIC        MISO
   B:0090H.7       PUBLIC        MOSI
@@ -1259,9 +1347,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A8H.0       PUBLIC        EX0
   B:0088H.0       PUBLIC        IT0
   B:0098H.3       PUBLIC        TB8
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 22
-
-
   B:00A8H.2       PUBLIC        EX1
   B:0088H.2       PUBLIC        IT1
   B:00D0H.0       PUBLIC        P
@@ -1272,7 +1357,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D0H.3       PUBLIC        RS0
   B:0088H.4       PUBLIC        TR0
   B:00D0H.4       PUBLIC        RS1
-  C:19ACH         PUBLIC        _write_port_bit
+  C:1AD8H         PUBLIC        _write_port_bit
   B:0088H.6       PUBLIC        TR1
   B:0090H.0       PUBLIC        SDA
   B:00C8H.2       PUBLIC        TR2
@@ -1294,6 +1379,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B8H.4       PUBLIC        PLS
   B:00D0H.5       PUBLIC        F0
   B:00D0H.1       PUBLIC        F1
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 24
+
+
   D:00D0H         PUBLIC        PSW
   B:00D8H.0       PUBLIC        CCF0
   B:00D8H.1       PUBLIC        CCF1
@@ -1301,212 +1389,49 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:0007H         SYMBOL        port_num
   D:0005H         SYMBOL        bit_num
   D:0003H         SYMBOL        bit_val
-  C:19ACH         LINE#         3
-  C:19ACH         LINE#         4
-  C:19ACH         LINE#         5
-  C:19AFH         LINE#         6
-  C:19AFH         LINE#         7
-  C:19C0H         LINE#         8
-  C:19C0H         LINE#         9
-  C:19C0H         LINE#         10
-  C:19CDH         LINE#         11
-  C:19CEH         LINE#         12
-  C:19CEH         LINE#         13
-  C:19DBH         LINE#         14
-  C:19DCH         LINE#         15
-  C:19DCH         LINE#         16
-  C:19E9H         LINE#         17
-  C:19EAH         LINE#         18
-  C:19EAH         LINE#         19
-  C:19F7H         LINE#         20
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 23
-
-
-  C:19F7H         LINE#         21
-  C:19F8H         LINE#         23
-  C:19F8H         LINE#         24
-  C:1A06H         LINE#         25
-  C:1A06H         LINE#         26
-  C:1A06H         LINE#         27
-  C:1A14H         LINE#         28
-  C:1A15H         LINE#         29
-  C:1A15H         LINE#         30
-  C:1A23H         LINE#         31
-  C:1A24H         LINE#         32
-  C:1A24H         LINE#         33
-  C:1A32H         LINE#         34
-  C:1A33H         LINE#         35
-  C:1A33H         LINE#         36
-  C:1A43H         LINE#         37
-  C:1A43H         LINE#         38
-  C:1A43H         LINE#         40
+  C:1AD8H         LINE#         3
+  C:1AD8H         LINE#         4
+  C:1AD8H         LINE#         5
+  C:1ADBH         LINE#         6
+  C:1ADBH         LINE#         7
+  C:1AECH         LINE#         8
+  C:1AECH         LINE#         9
+  C:1AECH         LINE#         10
+  C:1AF9H         LINE#         11
+  C:1AFAH         LINE#         12
+  C:1AFAH         LINE#         13
+  C:1B07H         LINE#         14
+  C:1B08H         LINE#         15
+  C:1B08H         LINE#         16
+  C:1B15H         LINE#         17
+  C:1B16H         LINE#         18
+  C:1B16H         LINE#         19
+  C:1B23H         LINE#         20
+  C:1B23H         LINE#         21
+  C:1B24H         LINE#         23
+  C:1B24H         LINE#         24
+  C:1B32H         LINE#         25
+  C:1B32H         LINE#         26
+  C:1B32H         LINE#         27
+  C:1B40H         LINE#         28
+  C:1B41H         LINE#         29
+  C:1B41H         LINE#         30
+  C:1B4FH         LINE#         31
+  C:1B50H         LINE#         32
+  C:1B50H         LINE#         33
+  C:1B5EH         LINE#         34
+  C:1B5FH         LINE#         35
+  C:1B5FH         LINE#         36
+  C:1B6FH         LINE#         37
+  C:1B6FH         LINE#         38
+  C:1B6FH         LINE#         40
   -------         ENDPROC       _WRITE_PORT_BIT
   -------         ENDMOD        OUTPUTS
-
-  -------         MODULE        PRINT_BYTES
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  B:00D8H.2       PUBLIC        CCF2
-  B:00D8H.3       PUBLIC        CCF3
-  D:0080H         PUBLIC        P0
-  B:00D8H.4       PUBLIC        CCF4
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  C:1BDDH         PUBLIC        _print_16bytes
-  D:00B0H         PUBLIC        P3
-  B:00B0H.4       PUBLIC        T0
-  B:00D0H.6       PUBLIC        AC
-  B:00B0H.5       PUBLIC        T1
-  B:00B0H.7       PUBLIC        nRD
-  B:0090H.0       PUBLIC        T2
-  B:00A8H.7       PUBLIC        EA
-  B:00A8H.6       PUBLIC        EC
-  B:00D8H.7       PUBLIC        CF
-  B:00B0H.2       PUBLIC        nINT0
-  B:0098H.7       PUBLIC        FE
-  B:00B0H.3       PUBLIC        nINT1
-  D:00A8H         PUBLIC        IEN0
-  C:1CB6H         PUBLIC        _print_memory
-  B:00B0H.0       PUBLIC        RxD
-  B:00B0H.1       PUBLIC        TxD
-  B:0090H.3       PUBLIC        CEX0
-  B:0090H.4       PUBLIC        CEX1
-  B:00C8H.0       PUBLIC        CP
-  B:00D8H.6       PUBLIC        CR
-  B:00C8H.6       PUBLIC        EXF2
-  D:00B8H         PUBLIC        IPL0
-  B:00B0H.6       PUBLIC        nWR
-  B:00A8H.4       PUBLIC        ES
-  B:0098H.0       PUBLIC        RI
-  B:00D0H.7       PUBLIC        CY
-  B:0098H.1       PUBLIC        TI
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 24
-
-
-  B:00B8H.1       PUBLIC        PT0L
-  B:00B8H.3       PUBLIC        PT1L
-  B:00B8H.5       PUBLIC        PT2L
-  B:0090H.1       PUBLIC        T2EX
-  D:00D8H         PUBLIC        CCON
-  B:00B8H.0       PUBLIC        PX0L
-  B:00D0H.2       PUBLIC        OV
-  B:0090H.1       PUBLIC        SS
-  B:00B8H.2       PUBLIC        PX1L
-  B:00C8H.5       PUBLIC        RCLK
-  B:00C8H.4       PUBLIC        TCLK
-  B:00B8H.6       PUBLIC        PPCL
-  D:0098H         PUBLIC        SCON
-  B:0080H.0       PUBLIC        AD0
-  D:0088H         PUBLIC        TCON
-  B:0080H.1       PUBLIC        AD1
-  B:0080H.2       PUBLIC        AD2
-  B:00C8H.1       PUBLIC        CnT2
-  B:0080H.3       PUBLIC        AD3
-  B:0090H.5       PUBLIC        MISO
-  B:0090H.7       PUBLIC        MOSI
-  B:0080H.4       PUBLIC        AD4
-  B:0080H.5       PUBLIC        AD5
-  B:0080H.6       PUBLIC        AD6
-  B:0080H.7       PUBLIC        AD7
-  B:00A0H.0       PUBLIC        AD8
-  B:00A0H.1       PUBLIC        AD9
-  B:0088H.1       PUBLIC        IE0
-  B:0088H.3       PUBLIC        IE1
-  B:00A8H.1       PUBLIC        ET0
-  B:00A8H.3       PUBLIC        ET1
-  B:0088H.5       PUBLIC        TF0
-  B:00A8H.5       PUBLIC        ET2
-  B:0088H.7       PUBLIC        TF1
-  B:00C8H.7       PUBLIC        TF2
-  B:0098H.2       PUBLIC        RB8
-  B:00A8H.0       PUBLIC        EX0
-  B:0088H.0       PUBLIC        IT0
-  B:0098H.3       PUBLIC        TB8
-  B:00A8H.2       PUBLIC        EX1
-  B:0088H.2       PUBLIC        IT1
-  B:00D0H.0       PUBLIC        P
-  B:0098H.7       PUBLIC        SM0
-  B:0090H.2       PUBLIC        ECI
-  B:0098H.6       PUBLIC        SM1
-  B:0098H.5       PUBLIC        SM2
-  B:00D0H.3       PUBLIC        RS0
-  B:0088H.4       PUBLIC        TR0
-  B:00D0H.4       PUBLIC        RS1
-  B:0088H.6       PUBLIC        TR1
-  B:00C8H.2       PUBLIC        TR2
-  B:0090H.6       PUBLIC        SCK
-  B:00C8H.3       PUBLIC        EXEN2
-  B:0098H.4       PUBLIC        REN
-  B:00A0H.2       PUBLIC        AD10
-  B:00A0H.3       PUBLIC        AD11
-  D:00C8H         PUBLIC        T2CON
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 25
-
-
-  B:00A0H.4       PUBLIC        AD12
-  B:00A0H.5       PUBLIC        AD13
-  B:00A0H.6       PUBLIC        AD14
-  B:00A0H.7       PUBLIC        AD15
-  B:00B8H.4       PUBLIC        PLS
-  B:00D0H.5       PUBLIC        F0
-  B:00D0H.1       PUBLIC        F1
-  D:00D0H         PUBLIC        PSW
-  B:00D8H.0       PUBLIC        CCF0
-  B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _PRINT_16BYTES
-  D:0001H         SYMBOL        array_in_p
-  -------         DO            array_in_p
-  D:0010H         SYMBOL        input_p
-  D:0013H         SYMBOL        index
-  D:0014H         SYMBOL        dat
-  -------         ENDDO         dat
-  C:1BDDH         LINE#         16
-  C:1BDDH         LINE#         17
-  C:1BDDH         LINE#         20
-  C:1BE3H         LINE#         21
-  C:1BF2H         LINE#         22
-  C:1BF5H         LINE#         23
-  C:1BF5H         LINE#         24
-  C:1C06H         LINE#         25
-  C:1C11H         LINE#         26
-  C:1C1AH         LINE#         27
-  C:1C1DH         LINE#         28
-  C:1C1DH         LINE#         29
-  C:1C2EH         LINE#         30
-  C:1C3DH         LINE#         31
-  C:1C42H         LINE#         32
-  C:1C4BH         LINE#         33
-  C:1C50H         LINE#         34
-  -------         ENDPROC       _PRINT_16BYTES
-  -------         PROC          _PRINT_MEMORY
-  D:0008H         SYMBOL        array_in_p
-  D:000BH         SYMBOL        number_of_bytes
-  -------         DO            number_of_bytes
-  D:000DH         SYMBOL        input_p
-  D:0006H         SYMBOL        i
-  -------         ENDDO         i
-  C:1CB6H         LINE#         44
-  C:1CC0H         LINE#         45
-  C:1CC0H         LINE#         48
-  C:1CC6H         LINE#         49
-  C:1CCAH         LINE#         50
-  C:1CCFH         LINE#         51
-  C:1CDBH         LINE#         52
-  C:1CE4H         LINE#         54
-  C:1CE4H         LINE#         55
-  C:1CEDH         LINE#         56
-  C:1CF8H         LINE#         57
-  C:1D14H         LINE#         58
-  -------         ENDPROC       _PRINT_MEMORY
-  -------         ENDMOD        PRINT_BYTES
-
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 26
-
 
   -------         MODULE        STA013
   C:0000H         SYMBOL        _ICE_DUMMY_
   B:00D8H.2       PUBLIC        CCF2
-  C:18F5H         PUBLIC        _STA013_send_cfg_file
-  C:1A44H         PUBLIC        _STA013_test_read
+  C:1969H         PUBLIC        _STA013_send_cfg_file
   B:00D8H.3       PUBLIC        CCF3
   D:0080H         PUBLIC        P0
   B:00D8H.4       PUBLIC        CCF4
@@ -1514,12 +1439,16 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   B:00B0H.4       PUBLIC        T0
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 25
+
+
   B:00D0H.6       PUBLIC        AC
   B:00B0H.5       PUBLIC        T1
   B:00B0H.7       PUBLIC        nRD
   B:0090H.0       PUBLIC        T2
   B:00A8H.7       PUBLIC        EA
   B:00A8H.6       PUBLIC        EC
+  C:1797H         PUBLIC        STA013_send_cfg_table
   B:00D8H.7       PUBLIC        CF
   B:00B0H.2       PUBLIC        nINT0
   B:0098H.7       PUBLIC        FE
@@ -1536,7 +1465,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0090H.3       PUBLIC        P1_3
   B:00B0H.2       PUBLIC        P3_2
   B:0090H.4       PUBLIC        P1_4
-  C:181AH         PUBLIC        STA013_init
+  C:1C82H         PUBLIC        STA013_init
   B:00D8H.6       PUBLIC        CR
   B:00B0H.3       PUBLIC        P3_3
   B:0090H.5       PUBLIC        P1_5
@@ -1550,31 +1479,29 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A8H.4       PUBLIC        ES
   B:0098H.0       PUBLIC        RI
   B:00D0H.7       PUBLIC        CY
-  C:167BH         PUBLIC        cfg_table
+  C:1584H         PUBLIC        cfg_table
   B:0098H.1       PUBLIC        TI
-  C:1E9BH         PUBLIC        STA013_test
   B:00B8H.1       PUBLIC        PT0L
   B:00B8H.3       PUBLIC        PT1L
   B:00B8H.5       PUBLIC        PT2L
   B:0090H.1       PUBLIC        T2EX
   D:00D8H         PUBLIC        CCON
   B:00B0H.6       PUBLIC        RS
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 27
-
-
   B:00B8H.0       PUBLIC        PX0L
   B:00D0H.2       PUBLIC        OV
   B:0090H.1       PUBLIC        SS
   B:00B8H.2       PUBLIC        PX1L
   B:00C8H.5       PUBLIC        RCLK
   B:00C8H.4       PUBLIC        TCLK
-  C:1AD0H         PUBLIC        STA013_test_write
   B:00B8H.6       PUBLIC        PPCL
   B:00A0H.4       PUBLIC        REDLED
   D:0098H         PUBLIC        SCON
   B:00A0H.5       PUBLIC        YELLOWLED
   B:0080H.0       PUBLIC        AD0
   D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 26
+
+
   B:0080H.1       PUBLIC        AD1
   B:0080H.2       PUBLIC        AD2
   B:00B0H.1       PUBLIC        per_RxD
@@ -1619,9 +1546,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00C8H.2       PUBLIC        TR2
   B:00A0H.0       PUBLIC        SW1
   B:00A0H.1       PUBLIC        SW2
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 28
-
-
   B:00A0H.2       PUBLIC        SW3
   B:00A0H.3       PUBLIC        SW4
   B:0090H.6       PUBLIC        SCK
@@ -1635,173 +1559,177 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.5       PUBLIC        AD13
   B:00A0H.6       PUBLIC        AD14
   B:00A0H.7       PUBLIC        AD15
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 27
+
+
+  C:1B70H         PUBLIC        _STA013_test_read_ID
   B:00B8H.4       PUBLIC        PLS
   B:00D0H.5       PUBLIC        F0
   B:00D0H.1       PUBLIC        F1
   D:00D0H         PUBLIC        PSW
   B:00D8H.0       PUBLIC        CCF0
   B:00D8H.1       PUBLIC        CCF1
-  -------         PROC          _STA013_TEST_READ
-  D:0031H         SYMBOL        ID_reg
+  -------         PROC          _STA013_TEST_READ_ID
+  D:0024H         SYMBOL        ID_reg
   -------         DO            ID_reg
-  D:0034H         SYMBOL        err
-  D:0035H         SYMBOL        timeout
-  D:0036H         SYMBOL        rcv
+  D:0027H         SYMBOL        err
+  D:0028H         SYMBOL        timeout
+  D:0029H         SYMBOL        rcv
   -------         ENDDO         rcv
-  C:1A44H         LINE#         20
-  C:1A4AH         LINE#         21
-  C:1A4AH         LINE#         23
-  C:1A4DH         LINE#         26
-  C:1A4DH         LINE#         28
-  C:1A56H         LINE#         29
-  C:1A77H         LINE#         30
-  C:1A80H         LINE#         31
-  C:1A82H         LINE#         32
-  C:1A8CH         LINE#         33
-  C:1A90H         LINE#         34
-  C:1A90H         LINE#         35
-  C:1A99H         LINE#         36
-  C:1A9CH         LINE#         37
-  C:1A9CH         LINE#         38
-  C:1AA7H         LINE#         39
-  C:1AADH         LINE#         40
-  C:1AADH         LINE#         41
-  C:1AB6H         LINE#         42
-  C:1AB9H         LINE#         43
-  C:1AB9H         LINE#         45
-  C:1ACDH         LINE#         46
-  C:1ACFH         LINE#         47
-  -------         ENDPROC       _STA013_TEST_READ
-  -------         PROC          STA013_TEST_WRITE
-  -------         DO            STA013_TEST_WRITE
-  D:002DH         SYMBOL        err
-  D:002EH         SYMBOL        timeout
-  D:002FH         SYMBOL        send
-  D:0030H         SYMBOL        ID_reg
-  -------         ENDDO         ID_reg
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 29
-
-
-  C:1AD0H         LINE#         49
-  C:1AD0H         LINE#         50
-  C:1AD0H         LINE#         52
-  C:1AD3H         LINE#         55
-  C:1AD6H         LINE#         57
-  C:1AD6H         LINE#         59
-  C:1ADFH         LINE#         60
-  C:1B01H         LINE#         61
-  C:1B0AH         LINE#         62
-  C:1B0CH         LINE#         63
-  C:1B16H         LINE#         64
-  C:1B1AH         LINE#         65
-  C:1B1AH         LINE#         66
-  C:1B23H         LINE#         67
-  C:1B26H         LINE#         68
-  C:1B26H         LINE#         70
-  C:1B37H         LINE#         72
-  C:1B3DH         LINE#         73
-  C:1B3DH         LINE#         74
-  C:1B46H         LINE#         75
-  C:1B49H         LINE#         76
-  C:1B49H         LINE#         78
-  C:1B55H         LINE#         79
-  C:1B57H         LINE#         80
-  -------         ENDPROC       STA013_TEST_WRITE
-  -------         PROC          STA013_TEST
-  -------         DO            STA013_TEST
-  D:002CH         SYMBOL        ID_reg
-  -------         ENDDO         ID_reg
-  C:1E9BH         LINE#         82
-  C:1E9BH         LINE#         83
-  C:1E9BH         LINE#         85
-  C:1EACH         LINE#         86
-  C:1EB6H         LINE#         87
-  -------         ENDPROC       STA013_TEST
+  C:1B70H         LINE#         29
+  C:1B76H         LINE#         30
+  C:1B76H         LINE#         32
+  C:1B79H         LINE#         35
+  C:1B79H         LINE#         37
+  C:1B9AH         LINE#         38
+  C:1B9CH         LINE#         39
+  C:1BA6H         LINE#         41
+  C:1BAAH         LINE#         42
+  C:1BAAH         LINE#         43
+  C:1BB3H         LINE#         44
+  C:1BB6H         LINE#         45
+  C:1BB6H         LINE#         46
+  C:1BBCH         LINE#         47
+  C:1BBCH         LINE#         48
+  C:1BC8H         LINE#         49
+  C:1BCBH         LINE#         50
+  C:1BCBH         LINE#         51
+  C:1BD6H         LINE#         52
+  C:1BDCH         LINE#         53
+  C:1BDCH         LINE#         54
+  C:1BE5H         LINE#         55
+  C:1BF7H         LINE#         56
+  C:1BFAH         LINE#         57
+  C:1BFAH         LINE#         58
+  C:1BFCH         LINE#         59
+  -------         ENDPROC       _STA013_TEST_READ_ID
   -------         PROC          _STA013_SEND_CFG_FILE
-  D:002CH         SYMBOL        cfg_p
+  D:0024H         SYMBOL        cfg_p
   -------         DO            cfg_p
-  D:002FH         SYMBOL        timeout
-  D:0030H         SYMBOL        status
-  D:0031H         SYMBOL        index
-  D:0033H         SYMBOL        internal_addr
-  D:0037H         SYMBOL        send_array
+  D:0027H         SYMBOL        timeout
+  D:0007H         SYMBOL        status
+  D:0028H         SYMBOL        index
+  D:002AH         SYMBOL        internal_addr
+  D:002EH         SYMBOL        send_array
   -------         ENDDO         send_array
-  C:18F5H         LINE#         89
-  C:18FBH         LINE#         90
-  C:18FBH         LINE#         96
-  C:1904H         LINE#         97
-  C:1908H         LINE#         99
-  C:1926H         LINE#         100
-  C:1926H         LINE#         101
-  C:1929H         LINE#         103
-  C:1929H         LINE#         104
-  C:1932H         LINE#         105
-  C:1959H         LINE#         106
-  C:1962H         LINE#         107
-  C:196CH         LINE#         108
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 30
+  C:1969H         LINE#         61
+  C:196FH         LINE#         62
+  C:196FH         LINE#         67
+  C:1974H         LINE#         68
+  C:1987H         LINE#         69
+  C:198FH         LINE#         70
+  C:1999H         LINE#         71
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 28
 
 
-  C:1970H         LINE#         109
-  C:1970H         LINE#         110
-  C:1973H         LINE#         111
-  C:1973H         LINE#         112
-  C:1973H         LINE#         113
-  C:198CH         LINE#         114
-  C:1994H         LINE#         115
-  C:199EH         LINE#         116
-  C:19A6H         LINE#         117
-  C:19A9H         LINE#         119
-  C:19ABH         LINE#         121
+  C:19A1H         LINE#         73
+  C:19B5H         LINE#         74
+  C:19B5H         LINE#         75
+  C:19B8H         LINE#         78
+  C:19B8H         LINE#         79
+  C:19DBH         LINE#         80
+  C:19DDH         LINE#         81
+  C:19E6H         LINE#         82
+  C:19EAH         LINE#         83
+  C:19EAH         LINE#         84
+  C:19EDH         LINE#         85
+  C:19EDH         LINE#         86
+  C:19EDH         LINE#         88
+  C:1A06H         LINE#         89
+  C:1A0EH         LINE#         90
+  C:1A18H         LINE#         91
+  C:1A20H         LINE#         92
+  C:1A23H         LINE#         93
+  C:1A25H         LINE#         94
   -------         ENDPROC       _STA013_SEND_CFG_FILE
+  -------         PROC          STA013_SEND_CFG_TABLE
+  -------         DO            STA013_SEND_CFG_TABLE
+  D:0024H         SYMBOL        recv
+  D:0025H         SYMBOL        send
+  D:0026H         SYMBOL        timeout
+  D:0027H         SYMBOL        status
+  D:0028H         SYMBOL        index
+  D:002AH         SYMBOL        internal_addr
+  -------         ENDDO         internal_addr
+  C:1797H         LINE#         96
+  C:1797H         LINE#         97
+  C:1797H         LINE#         101
+  C:179CH         LINE#         102
+  C:179CH         LINE#         103
+  C:179FH         LINE#         104
+  C:17B0H         LINE#         105
+  C:17B7H         LINE#         108
+  C:17B7H         LINE#         109
+  C:17DCH         LINE#         110
+  C:17DEH         LINE#         111
+  C:17E8H         LINE#         112
+  C:17ECH         LINE#         113
+  C:17ECH         LINE#         114
+  C:17F5H         LINE#         115
+  C:17F8H         LINE#         116
+  C:17F8H         LINE#         117
+  C:17FEH         LINE#         118
+  C:17FEH         LINE#         119
+  C:1807H         LINE#         120
+  C:180AH         LINE#         121
+  C:180AH         LINE#         124
+  C:180DH         LINE#         125
+  C:180FH         LINE#         127
+  C:180FH         LINE#         128
+  C:1834H         LINE#         129
+  C:1836H         LINE#         130
+  C:1840H         LINE#         131
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 29
+
+
+  C:1844H         LINE#         132
+  C:1844H         LINE#         133
+  C:184DH         LINE#         134
+  C:1850H         LINE#         135
+  C:1850H         LINE#         136
+  C:1856H         LINE#         137
+  C:1856H         LINE#         138
+  C:185FH         LINE#         139
+  C:1862H         LINE#         140
+  C:1862H         LINE#         141
+  C:1868H         LINE#         142
+  C:1868H         LINE#         143
+  C:1871H         LINE#         144
+  C:1880H         LINE#         145
+  C:1883H         LINE#         146
+  C:1883H         LINE#         148
+  C:1883H         LINE#         149
+  C:1895H         LINE#         150
+  C:1895H         LINE#         151
+  C:18A9H         LINE#         152
+  C:18ABH         LINE#         153
+  -------         ENDPROC       STA013_SEND_CFG_TABLE
   -------         PROC          STA013_INIT
   -------         DO            STA013_INIT
-  D:0023H         SYMBOL        timeout
-  D:0024H         SYMBOL        status
-  D:0025H         SYMBOL        index
-  D:0027H         SYMBOL        internal_addr
-  D:002BH         SYMBOL        send_array
-  -------         ENDDO         send_array
-  C:181AH         LINE#         123
-  C:181AH         LINE#         124
-  C:181AH         LINE#         131
-  C:181FH         LINE#         132
-  C:1822H         LINE#         134
-  C:182AH         LINE#         135
-  C:1833H         LINE#         138
-  C:183BH         LINE#         139
-  C:183BH         LINE#         140
-  C:1844H         LINE#         141
-  C:1847H         LINE#         142
-  C:1847H         LINE#         144
-  C:1858H         LINE#         145
-  C:1869H         LINE#         147
-  C:186EH         LINE#         148
-  C:186EH         LINE#         149
-  C:1871H         LINE#         150
-  C:1882H         LINE#         151
-  C:1889H         LINE#         153
-  C:1889H         LINE#         154
-  C:1892H         LINE#         155
-  C:18B9H         LINE#         156
-  C:18C2H         LINE#         157
-  C:18C4H         LINE#         158
-  C:18CEH         LINE#         159
-  C:18D2H         LINE#         160
-  C:18D2H         LINE#         161
-  C:18DBH         LINE#         162
-  C:18DEH         LINE#         163
-  C:18DEH         LINE#         164
-  C:18F2H         LINE#         166
-  C:18F4H         LINE#         167
+  D:0023H         SYMBOL        ID_reg
+  -------         ENDDO         ID_reg
+  C:1C82H         LINE#         155
+  C:1C82H         LINE#         156
+  C:1C82H         LINE#         161
+  C:1C8BH         LINE#         162
+  C:1C94H         LINE#         165
+  C:1C9DH         LINE#         166
+  C:1CABH         LINE#         167
+  C:1CABH         LINE#         168
+  C:1CB4H         LINE#         169
+  C:1CB7H         LINE#         170
+  C:1CB7H         LINE#         171
+  C:1CC0H         LINE#         172
+  C:1CCCH         LINE#         174
+  C:1CDDH         LINE#         175
+  C:1CEEH         LINE#         177
+  C:1CF9H         LINE#         179
+  C:1CFBH         LINE#         180
   -------         ENDPROC       STA013_INIT
   -------         ENDMOD        STA013
 
   -------         MODULE        TIMER0_HARDWARE_DELAY_1MS
   C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 31
-
-
   B:00D8H.2       PUBLIC        CCF2
   B:00D8H.3       PUBLIC        CCF3
   D:0080H         PUBLIC        P0
@@ -1811,6 +1739,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:00B0H         PUBLIC        P3
   B:00B0H.4       PUBLIC        T0
   B:00D0H.6       PUBLIC        AC
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 30
+
+
   B:00B0H.5       PUBLIC        T1
   B:00B0H.7       PUBLIC        nRD
   B:0090H.0       PUBLIC        T2
@@ -1859,9 +1790,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00C8H.5       PUBLIC        RCLK
   B:00C8H.4       PUBLIC        TCLK
   B:00B8H.6       PUBLIC        PPCL
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 32
-
-
   B:00A0H.4       PUBLIC        REDLED
   D:0098H         PUBLIC        SCON
   B:00A0H.5       PUBLIC        YELLOWLED
@@ -1871,6 +1799,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0080H.1       PUBLIC        AD1
   B:0080H.2       PUBLIC        AD2
   B:00B0H.1       PUBLIC        per_RxD
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 31
+
+
   B:00C8H.1       PUBLIC        CnT2
   B:0080H.3       PUBLIC        AD3
   B:0090H.5       PUBLIC        MISO
@@ -1910,7 +1841,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0088H.4       PUBLIC        TR0
   B:00D0H.4       PUBLIC        RS1
   B:0088H.6       PUBLIC        TR1
-  C:1E75H         PUBLIC        _Timer0_DELAY_1ms
+  C:1ECCH         PUBLIC        _Timer0_DELAY_1ms
   B:0090H.0       PUBLIC        SDA
   B:00C8H.2       PUBLIC        TR2
   B:00A0H.0       PUBLIC        SW1
@@ -1919,9 +1850,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.3       PUBLIC        SW4
   B:0090H.6       PUBLIC        SCK
   B:0090H.1       PUBLIC        SCL
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 33
-
-
   B:00C8H.3       PUBLIC        EXEN2
   B:0098H.4       PUBLIC        REN
   B:00A0H.2       PUBLIC        AD10
@@ -1931,6 +1859,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00A0H.5       PUBLIC        AD13
   B:00A0H.6       PUBLIC        AD14
   B:00A0H.7       PUBLIC        AD15
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 32
+
+
   B:00B8H.4       PUBLIC        PLS
   B:00D0H.5       PUBLIC        F0
   B:00D0H.1       PUBLIC        F1
@@ -1939,21 +1870,21 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          _TIMER0_DELAY_1MS
   D:0006H         SYMBOL        duration
-  C:1E75H         LINE#         8
-  C:1E75H         LINE#         9
-  C:1E75H         LINE#         11
-  C:1E78H         LINE#         12
-  C:1E7BH         LINE#         15
-  C:1E7DH         LINE#         18
-  C:1E7DH         LINE#         20
-  C:1E80H         LINE#         21
-  C:1E83H         LINE#         23
-  C:1E85H         LINE#         24
-  C:1E87H         LINE#         26
-  C:1E8AH         LINE#         28
-  C:1E8CH         LINE#         29
-  C:1E91H         LINE#         30
-  C:1E9AH         LINE#         31
+  C:1ECCH         LINE#         8
+  C:1ECCH         LINE#         9
+  C:1ECCH         LINE#         11
+  C:1ECFH         LINE#         12
+  C:1ED2H         LINE#         15
+  C:1ED4H         LINE#         18
+  C:1ED4H         LINE#         20
+  C:1ED7H         LINE#         21
+  C:1EDAH         LINE#         23
+  C:1EDCH         LINE#         24
+  C:1EDEH         LINE#         26
+  C:1EE1H         LINE#         28
+  C:1EE3H         LINE#         29
+  C:1EE8H         LINE#         30
+  C:1EF1H         LINE#         31
   -------         ENDPROC       _TIMER0_DELAY_1MS
   -------         ENDMOD        TIMER0_HARDWARE_DELAY_1MS
 
@@ -1979,9 +1910,6 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00B0H.3       PUBLIC        nINT1
   D:00A8H         PUBLIC        IEN0
   B:00B0H.0       PUBLIC        RxD
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 34
-
-
   B:00B0H.1       PUBLIC        TxD
   B:0090H.3       PUBLIC        CEX0
   B:0090H.4       PUBLIC        CEX1
@@ -1991,6 +1919,9 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:00B8H         PUBLIC        IPL0
   B:00B0H.6       PUBLIC        nWR
   B:00A8H.4       PUBLIC        ES
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 33
+
+
   B:0098H.0       PUBLIC        RI
   B:00D0H.7       PUBLIC        CY
   B:0098H.1       PUBLIC        TI
@@ -2009,7 +1940,7 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   D:0099H         PUBLIC        SBUF
   D:0087H         PUBLIC        PCON
   D:0098H         PUBLIC        SCON
-  C:1C55H         PUBLIC        _uart_init
+  C:1D63H         PUBLIC        _uart_init
   B:0080H.0       PUBLIC        AD0
   D:0088H         PUBLIC        TCON
   B:0080H.1       PUBLIC        AD1
@@ -2039,24 +1970,24 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:0098H.3       PUBLIC        TB8
   B:00A8H.2       PUBLIC        EX1
   B:0088H.2       PUBLIC        IT1
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 35
-
-
   B:00D0H.0       PUBLIC        P
   B:0098H.7       PUBLIC        SM0
   B:0090H.2       PUBLIC        ECI
   B:0098H.6       PUBLIC        SM1
   B:0098H.5       PUBLIC        SM2
-  C:1EF8H         PUBLIC        _UART_Transmit
+  C:1F76H         PUBLIC        _UART_Transmit
   B:00D0H.3       PUBLIC        RS0
   B:0088H.4       PUBLIC        TR0
   B:00D0H.4       PUBLIC        RS1
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 34
+
+
   B:0088H.6       PUBLIC        TR1
   B:00C8H.2       PUBLIC        TR2
   D:009AH         PUBLIC        BRL
   B:0090H.6       PUBLIC        SCK
   B:00C8H.3       PUBLIC        EXEN2
-  C:1F00H         PUBLIC        UART_Receive
+  C:1F7EH         PUBLIC        UART_Receive
   B:0098H.4       PUBLIC        REN
   B:00A0H.2       PUBLIC        AD10
   B:00A0H.3       PUBLIC        AD11
@@ -2073,37 +2004,34 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   B:00D8H.1       PUBLIC        CCF1
   -------         PROC          _UART_INIT
   D:0023H         SYMBOL        BAUD_RATE
-  C:1C55H         LINE#         12
-  C:1C59H         LINE#         13
-  C:1C59H         LINE#         17
-  C:1C5CH         LINE#         18
-  C:1C5FH         LINE#         21
-  C:1C61H         LINE#         24
-  C:1C64H         LINE#         27
-  C:1C67H         LINE#         29
-  C:1CB2H         LINE#         30
-  C:1CB5H         LINE#         34
+  C:1D63H         LINE#         12
+  C:1D67H         LINE#         13
+  C:1D67H         LINE#         17
+  C:1D6AH         LINE#         18
+  C:1D6DH         LINE#         21
+  C:1D6FH         LINE#         24
+  C:1D72H         LINE#         27
+  C:1D75H         LINE#         29
+  C:1DC0H         LINE#         30
+  C:1DC3H         LINE#         34
   -------         ENDPROC       _UART_INIT
   -------         PROC          _UART_TRANSMIT
   D:0007H         SYMBOL        send_value
-  C:1EF8H         LINE#         44
-  C:1EF8H         LINE#         45
-  C:1EF8H         LINE#         46
-  C:1EFBH         LINE#         47
-  C:1EFDH         LINE#         48
-  C:1EFFH         LINE#         49
-  C:1EFFH         LINE#         50
+  C:1F76H         LINE#         44
+  C:1F76H         LINE#         45
+  C:1F76H         LINE#         46
+  C:1F79H         LINE#         47
+  C:1F7BH         LINE#         48
+  C:1F7DH         LINE#         49
+  C:1F7DH         LINE#         50
   -------         ENDPROC       _UART_TRANSMIT
   -------         PROC          UART_RECEIVE
-  C:1F00H         LINE#         65
-  C:1F00H         LINE#         66
-  C:1F00H         LINE#         67
-  C:1F03H         LINE#         68
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 36
-
-
-  C:1F05H         LINE#         69
-  C:1F07H         LINE#         70
+  C:1F7EH         LINE#         65
+  C:1F7EH         LINE#         66
+  C:1F7EH         LINE#         67
+  C:1F81H         LINE#         68
+  C:1F83H         LINE#         69
+  C:1F85H         LINE#         70
   -------         ENDPROC       UART_RECEIVE
   -------         ENDMOD        UART
 
@@ -2111,67 +2039,67 @@ SYMBOL TABLE OF MODULE:  exp3 (EXP_3_FALL2019)
   C:0003H         SEGMENT       STA013_CONFIG
   C:0003H         PUBLIC        CONFIG
   C:0FA1H         PUBLIC        CONFIG2
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 35
+
+
   -------         ENDMOD        CONFIG
 
-  -------         MODULE        ?C?CLDPTR
-  C:132FH         PUBLIC        ?C?CLDPTR
-  -------         ENDMOD        ?C?CLDPTR
-
   -------         MODULE        ?C?CLDOPTR
-  C:1348H         PUBLIC        ?C?CLDOPTR
+  C:15A6H         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
 
   -------         MODULE        ?C?CSTPTR
-  C:1375H         PUBLIC        ?C?CSTPTR
+  C:15D3H         PUBLIC        ?C?CSTPTR
   -------         ENDMOD        ?C?CSTPTR
 
   -------         MODULE        ?C?CSTOPTR
-  C:1387H         PUBLIC        ?C?CSTOPTR
+  C:15E5H         PUBLIC        ?C?CSTOPTR
   -------         ENDMOD        ?C?CSTOPTR
 
   -------         MODULE        ?C?LMUL
-  C:13A9H         PUBLIC        ?C?LMUL
+  C:1607H         PUBLIC        ?C?LMUL
   -------         ENDMOD        ?C?LMUL
 
   -------         MODULE        ?C?ULDIV
-  C:1434H         PUBLIC        ?C?ULDIV
+  C:1692H         PUBLIC        ?C?ULDIV
   -------         ENDMOD        ?C?ULDIV
 
   -------         MODULE        ?C?ULCMP
-  C:14C6H         PUBLIC        ?C?ULCMP
+  C:1724H         PUBLIC        ?C?ULCMP
   -------         ENDMOD        ?C?ULCMP
 
   -------         MODULE        ?C?ULSHR
-  C:14D7H         PUBLIC        ?C?ULSHR
+  C:1735H         PUBLIC        ?C?ULSHR
   -------         ENDMOD        ?C?ULSHR
 
   -------         MODULE        PRINTF
-  D:0037H         PUBLIC        ?_PRINTF517?BYTE
-  D:0037H         PUBLIC        ?_PRINTF?BYTE
-  D:0037H         PUBLIC        ?_SPRINTF517?BYTE
-  D:0037H         PUBLIC        ?_SPRINTF?BYTE
+  D:002EH         PUBLIC        ?_PRINTF517?BYTE
+  D:002EH         PUBLIC        ?_PRINTF?BYTE
+  D:002EH         PUBLIC        ?_SPRINTF517?BYTE
+  D:002EH         PUBLIC        ?_SPRINTF?BYTE
   C:1035H         PUBLIC        _PRINTF
   C:1035H         PUBLIC        _PRINTF517
   C:102FH         PUBLIC        _SPRINTF
   C:102FH         PUBLIC        _SPRINTF517
   -------         ENDMOD        PRINTF
 
+  -------         MODULE        ?C?CLDPTR
+  C:1748H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
   -------         MODULE        ?C?PLDIIDATA
-  C:14EAH         PUBLIC        ?C?PLDIIDATA
+  C:1761H         PUBLIC        ?C?PLDIIDATA
   -------         ENDMOD        ?C?PLDIIDATA
-BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  13:40:13  PAGE 37
-
-
 
   -------         MODULE        ?C?CCASE
-  C:14FAH         PUBLIC        ?C?CCASE
+  C:1771H         PUBLIC        ?C?CCASE
   -------         ENDMOD        ?C?CCASE
 
   -------         MODULE        PUTCHAR
-  C:1E4EH         PUBLIC        _PUTCHAR
+  C:1EA5H         PUBLIC        _PUTCHAR
   -------         ENDMOD        PUTCHAR
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_PRINT_MEMORY?PRINT_BYTES
+BL51 BANKED LINKER/LOCATER V4.02                                                      10/25/2019  23:11:38  PAGE 36
 
-LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
