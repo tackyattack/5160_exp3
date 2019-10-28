@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  I2C                                                                    10/25/2019 23:11:36 PAGE 1   
+C51 COMPILER V6.02  I2C                                                                    10/28/2019 14:04:14 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE I2C
@@ -62,7 +62,7 @@ stmt level    source
   53   1        // verify ACK
   54   1        sent_bit = SDA;
   55   1        if(sent_bit != 0) return I2C_ERROR_NACK;
-C51 COMPILER V6.02  I2C                                                                    10/25/2019 23:11:36 PAGE 2   
+C51 COMPILER V6.02  I2C                                                                    10/28/2019 14:04:14 PAGE 2   
 
   56   1        return I2C_COMM_OK;
   57   1      }
@@ -126,7 +126,7 @@ stmt level    source
  114   1      
  115   1        uint8_t return_val, send_val;
  116   1        uint16_t index;
-C51 COMPILER V6.02  I2C                                                                    10/25/2019 23:11:36 PAGE 3   
+C51 COMPILER V6.02  I2C                                                                    10/28/2019 14:04:14 PAGE 3   
 
  117   1        SDA=1;
  118   1        SCL=1;
@@ -190,7 +190,7 @@ stmt level    source
  175   1      
  176   1        // create start condition
  177   1        SDA=0;
-C51 COMPILER V6.02  I2C                                                                    10/25/2019 23:11:36 PAGE 4   
+C51 COMPILER V6.02  I2C                                                                    10/28/2019 14:04:14 PAGE 4   
 
  178   1      
  179   1        // send device address

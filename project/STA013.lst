@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 1   
+C51 COMPILER V6.02  STA013                                                                 10/28/2019 14:04:14 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE STA013
@@ -62,7 +62,7 @@ stmt level    source
   52   1        if(rcv[0] != 0xAC)
   53   1        {
   54   2          printf("Error: incorrect ID register while testing read");
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 2   
+C51 COMPILER V6.02  STA013                                                                 10/28/2019 14:04:14 PAGE 2   
 
   55   2          printf(" ID register: <0x%2.2bX>\n", ID_reg);
   56   2          return TEST_FAIL;
@@ -126,7 +126,7 @@ stmt level    source
  114   3            printf("STA013 init error while setting config table: timeout\n");
  115   3            return STA013_INIT_ERROR;
  116   3          }
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 3   
+C51 COMPILER V6.02  STA013                                                                 10/28/2019 14:04:14 PAGE 3   
 
  117   2          if(status != I2C_COMM_OK)
  118   2          {
@@ -190,7 +190,7 @@ stmt level    source
  175   1        if(STA013_send_cfg_file(&CONFIG2)!=STA013_CFG_SENT) return STA013_INIT_ERROR;
  176   1      
  177   1        if(STA013_send_cfg_table() != STA013_CFG_SENT) return STA013_INIT_ERROR;
-C51 COMPILER V6.02  STA013                                                                 10/25/2019 23:11:37 PAGE 4   
+C51 COMPILER V6.02  STA013                                                                 10/28/2019 14:04:14 PAGE 4   
 
  178   1      
  179   1        return STA013_INIT_OK;

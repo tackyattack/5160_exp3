@@ -1,4 +1,4 @@
-C51 COMPILER V6.02  OUTPUTS                                                                10/25/2019 23:11:37 PAGE 1   
+C51 COMPILER V6.02  OUTPUTS                                                                10/28/2019 14:04:14 PAGE 1   
 
 
 C51 COMPILER V6.02, COMPILATION OF MODULE OUTPUTS
@@ -62,7 +62,7 @@ stmt level    source
   52          // 			case PORT2:
   53          // 				P2 = port_val;
   54          // 			   	break;
-C51 COMPILER V6.02  OUTPUTS                                                                10/25/2019 23:11:37 PAGE 2   
+C51 COMPILER V6.02  OUTPUTS                                                                10/28/2019 14:04:14 PAGE 2   
 
   55          // 			case PORT3:
   56          // 				P3 = port_val;
